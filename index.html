@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
+      :root {
+        --bg-color-card: rgb(255, 255, 255);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* scrollbar customization */
+      body::-webkit-scrollbar {
+        width: 0.875rem;
+      }
+
+      body::-webkit-scrollbar-track {
+        /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4); */
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      body::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+      }
+
+      html {
+        font-family: "Inter", sans-serif;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: grey;
+      }
+
+      body {
+        display: grid;
+        grid-template-rows: 4rem auto 4rem;
+      }
+
+      main,
+      nav {
+        width: min(1080px, 90%);
+        margin-inline: auto;
+      }
+
+      nav span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+      }
+
+      nav span .js-logo {
+        height: 1.875rem;
+        width: 1.875rem;
+        border-radius: 4px;
+      }
+
+      nav a {
+        display: flex;
+        padding: 5px;
+        align-items: center;
+        gap: 1rem;
+        transition: 250ms;
+      }
+
+      nav a:hover {
+        background: rgb(249, 249, 249);
+        padding: 5px 5px 5px 1rem;
+        border-radius: 2rem;
+        color: black;
+      }
+
+      nav .profile-img {
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 100%;
+      }
+
+      main {
+        padding-block: 2rem;
+        position: relative;
+      }
+
+      .page-title {
+        font-size: 2rem;
+        list-style: 2, 5rem;
+        margin-block: 0rem 3rem;
+        color: #1f1f1f;
+      }
+
+      .exercises-list-title {
+        margin-block: 4rem 3rem;
+      }
+
+      .exercises-list {
+        /* border: 2px solid black; */
+        position: relative;
+        list-style: none;
+        display: grid;
+        gap: 1rem 2em;
+      }
+
+      @media (min-width: 800px) {
+        .exercises-list {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .exercise-card {
+        position: relative;
+        border: 1px solid rgb(234, 234, 234);
+        background: var(--bg-color-card);
+        display: block;
+        height: auto;
+        border-radius: 0.5rem;
+        padding: 1.25rem 1rem;
+        transition: transform 1s;
+      }
+
+      .exercise-card::before {
+        transition: 0.3s;
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        filter: blur(1rem);
+        opacity: 0;
+        z-index: -10;
+        background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+      }
+
+      .exercise-card:not(.pending):hover::before {
+        opacity: 0.2;
+      }
+
+      .exercise-card--title {
+        margin-bottom: 1rem;
+        color: #1f1f1f;
+      }
+
+      .exercise-card--desc {
+        position: relative;
+        /* border: 2px solid black; */
+        line-height: 1.5rem;
+        height: calc(3 * 1.5rem);
+        overflow: hidden;
+        color: #6f6f6f;
+      }
+
+      .exercise-card--desc::after {
+        content: "";
+
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: 1.5rem;
+        width: 50%;
+
+        background: linear-gradient(90deg, transparent, var(--bg-color-card));
+      }
+
+      .exercise-card.pending:hover {
+        cursor: not-allowed;
+      }
+
+      .exercise-card.pending > * {
+        filter: blur(2px) opacity(0.5);
+      }
+
+      footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border-top: 1px solid grey;
+        color: rgb(198, 198, 198);
+        position: relative;
+      }
+      footer a {
+        color: grey;
+        position: relative;
+      }
+
+      footer a:hover {
+        color: black;
+        z-index: 100;
+      }
+
+      footer a:hover::before {
+        position: absolute;
+        content: "";
+        height: 2rem;
+        width: 12rem;
+        z-index: 0;
+        filter: blur(1rem);
+        opacity: 0.2;
+        background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <span
+        >Ejercicios
+        <img src="/media/logo-javascript.svg" class="js-logo" alt="" />
+      </span>
+      <a target="_blank" href="https://github.com/guidocarda"
+        >Cardarelli Guido
+        <img
+          src="https://avatars.githubusercontent.com/u/78933518?s=400&u=ccc0a53dcea8fbac979acf93e2a9ffcfe50cf9d2&v=4"
+          alt=""
+          class="profile-img"
+        />
+      </a>
+    </nav>
+    <main>
+      <h1 class="page-title">Listado de ejercicios</h1>
+      <ul class="exercises-list"></ul>
+      <h2 class="exercises-list-title">Ejercitacion avanzada</h2>
+      <ul class="exercises-list"></ul>
+      <h2 class="exercises-list-title">Ejercitacion arreglos</h2>
+      <ul class="exercises-list"></ul>
+    </main>
+    <footer>
+      Idea original de
+      <a target="_blank" href="https://github.com/joaquinvesapa">
+        Joaquin Vesco Aparicio ©
+      </a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

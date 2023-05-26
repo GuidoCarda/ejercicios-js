@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ejercicio 3</title>
+    <meta charset="utf-8" />
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Raleway";
+      background-color: rgb(228, 229, 233);
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: 700;
+
+      background: #4a5bb5;
+      color: white;
+      border: 2px solid transparent;
+    }
+
+    button:focus {
+      border-color: hsl(230, 42%, 70%);
+      outline: hsl(230, 42%, 70%);
+    }
+
+    input,
+    button {
+      font-family: inherit;
+      font-size: inherit;
+      height: 3rem;
+      width: 100%;
+      border-radius: 0.3rem;
+    }
+
+    input {
+      border: 2px solid transparent;
+      padding-inline: 1rem;
+    }
+
+    input:is(:focus) {
+      border-color: #4a5bb5;
+      outline: #4a5bb5;
+    }
+
+    main {
+      display: grid;
+      place-content: center;
+      width: min(800px, 90vw);
+      gap: 2rem;
+      min-height: 100vh;
+      margin-inline: auto;
+    }
+
+    main > section:first-child label + input {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    main > section:first-child button {
+      margin-top: 2rem;
+    }
+
+    #result {
+      min-height: 6rem;
+      display: flex;
+      font-size: 1.25rem;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transition: opacity 1s;
+      opacity: 0;
+    }
+
+    #result:has(> span) {
+      opacity: 1;
+    }
+
+    section#result > div {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    section#result > div > span {
+      background: rgb(43, 161, 76);
+      padding: 0.5rem 1.5rem;
+      border-radius: 0.5rem;
+      color: white;
+    }
+
+    section#result > div > span.notEven {
+      background: rgb(161, 43, 43);
+    }
+  </style>
+  <body>
+    <main>
+      <section>
+        <label for="first-number">Numero 1</label>
+        <input type="text" id="first-number" />
+        <label for="second-number">Numero 2</label>
+        <input type="text" id="second-number" />
+        <button>Calcular</button>
+      </section>
+
+      <section id="result"></section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

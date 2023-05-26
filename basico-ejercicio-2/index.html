@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Ejercicio 2</title>
+    <meta charset="utf-8" />
+  </head>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+    }
+
+    main {
+      min-height: 100vh;
+      display: grid;
+      place-content: center;
+      justify-items: center;
+      text-align: center;
+    }
+
+    input,
+    select,
+    button {
+      height: 3rem;
+      padding-inline: 1rem;
+      font: inherit;
+    }
+
+    input {
+      border-radius: 0.3rem;
+      border: 2px solid purple;
+      outline: none;
+    }
+
+    .result {
+      margin-top: 2rem;
+    }
+  </style>
+  <body>
+    <main>
+      <section>
+        <h1>conversor temperatura</h1>
+        <input type="text" autofocus id="current-temperature" />
+        <select name="" id="current-scale-select">
+          <option value="celcius" selected>Celcius</option>
+          <option value="romer">Romer</option>
+          <option value="farenheit">Farenheit</option>
+          <option value="kelvin">Kelvin</option>
+        </select>
+
+        <span> -- > </span>
+
+        <select name="" id="desired-scale-select">
+          <option value="farenheit" selected>Farenheit</option>
+          <option value="celcius">Celcius</option>
+          <option value="romer">Romer</option>
+          <option value="kelvin">Kelvin</option>
+        </select>
+        <button>calcular</button>
+      </section>
+
+      <div class="result">
+        <span class="result-current-value">30c</span>
+        <span>es igual a </span>
+        <span class="result-desired-value">86f</span>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<!-- 
+De Celsius a Fahrenheit: °F = °C × 9/5 + 32
+De Fahrenheit a Celsius: °C = (°F − 32) × 5/9
+De Fahrenheit a Kelvin: K = (°F + 459.67) × 5/9
+De Kelvin a Fahrenheit: °F = K × 9/5 − 459.67
+De Celsius a Kelvin: K = °C + 273.15
+De Kelvin a Celsius: °C = K − 273.15
+
+De Rømer a Celsius: °C = (°Rø − 7.5) × 40/21
+De Celsius a Rømer: °Rø = °C × 21/40 + 7.5
+De Rømer a Fahrenheit: °F = (°Rø − 7.5) × 24/7 + 32
+De Fahrenheit a Rømer: °Rø = (°F − 32) × 7/24 + 7.5
+De Rømer a Kelvin: K = (°Rø − 7.5) × 40/21 + 273.15
+De Kelvin a Rømer: °Rø = (K − 273.15) × 21/40 + 7.5 -->

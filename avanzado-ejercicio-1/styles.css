@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Inter", sans-serif;
+}
+
+html,
+body,
+main {
+  min-height: 100%;
+  background: rgb(255, 255, 255);
+}
+
+input,
+button {
+  width: 100%;
+  height: 3rem;
+  font: inherit;
+  border-radius: 0.3rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+main {
+  padding-block: 2rem;
+}
+
+h1 {
+  margin-bottom: 3rem;
+  margin-left: 1rem;
+  font-size: 2.5rem;
+}
+
+main > section:last-of-type {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 1200px) {
+  main > section:last-of-type {
+    grid-template-columns: 400px 1fr;
+    margin-bottom: 1rem;
+  }
+}
+
+section + section {
+  margin-top: 3rem;
+}
+
+.container {
+  width: min(1280px, 90%);
+  margin-inline: auto;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 2.25rem;
+}
+
+.billing-form {
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.billing-form label {
+  margin-bottom: 0.5rem;
+  color: grey;
+}
+
+.billing-form input {
+  padding-inline: 1rem;
+  border: 1px solid grey;
+}
+
+.billing-form input:focus {
+  padding-inline: 1rem;
+  outline: 1px solid rgb(215, 215, 215);
+}
+
+.billing-form input + label {
+  margin-top: 1rem;
+}
+
+.billing-form button {
+  margin-top: 2rem;
+  background: rgb(52, 52, 52);
+  color: white;
+}
+
+.billing-history {
+  border-radius: 0.5rem;
+  padding: 1rem 0 1rem 1rem;
+  max-height: 100%;
+  overflow-y: auto;
+  /* border: 2px solid red; */
+}
+
+.billing-history > div {
+  border-radius: 0.5rem;
+  border: 1px solid rgb(209, 209, 209);
+  overflow: hidden;
+  font-size: 1em;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  border-radius: 0.3rem;
+  border-collapse: collapse;
+  overflow-x: auto;
+}
+
+thead {
+  text-transform: capitalize;
+  background: rgb(245, 245, 245);
+  color: rgb(56, 56, 56);
+}
+
+table td,
+table th {
+  height: 3rem;
+  padding-inline: 1rem;
+}
+
+table tr + tr {
+  border-top: 1px solid rgb(223, 223, 223);
+}
+
+tbody td.empty-state {
+  font-size: 1.5rem;
+  color: gray;
+  height: 10rem;
+  text-align: center;
+}
+
+.statistics {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .statistics {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+}
+.statistics .statistics-card {
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid;
+}
+
+.statistics .statistics-card h2 {
+  font-size: 2rem;
+  position: relative;
+}
+
+.statistics .statistics-card span {
+  color: grey;
+}
+
+.statistics .statistics-card:nth-of-type(1) {
+  background: rgba(140, 186, 214, 0.1);
+  border-color: rgb(174, 201, 218);
+}
+.statistics .statistics-card:nth-of-type(2) {
+  background: rgba(197, 174, 218, 0.1);
+  border-color: rgb(197, 174, 218);
+}
+.statistics .statistics-card:nth-of-type(3) {
+  background: rgba(140, 214, 157, 0.1);
+  border-color: rgb(140, 214, 157);
+}
+
+/* Notifications */
+
+.notification {
+  position: absolute;
+  inset: auto 0;
+  margin-inline: auto;
+
+  display: grid;
+  place-content: center;
+
+  width: max-content;
+  padding: 1rem;
+  color: hsl(0, 0%, 69%);
+  background: hsla(0, 0%, 69%, 0.102);
+  border-radius: 0.5rem;
+  font-weight: 700;
+  border: 1px solid hsl(0, 0%, 69%);
+
+  translate: 0 1rem;
+  opacity: 0;
+  transition: 1s all;
+}
+
+.notification.visible {
+  opacity: 1;
+  translate: 0;
+}
+
+.notification.success {
+  color: hsl(130, 47%, 60%);
+  background: hsla(130, 47%, 69%, 0.1);
+  border-color: hsl(130, 47%, 60%);
+}
+
+.notification.error {
+  color: hsl(0, 60%, 69%);
+  background: rgba(214, 140, 140, 0.1);
+  border-color: rgb(214, 140, 140);
+}

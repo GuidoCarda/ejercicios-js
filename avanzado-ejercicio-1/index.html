@@ -1,0 +1,69 @@
+<!DOCTYPE html/>
+<html>
+  <head>
+    <title>Ejercicio 1</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <div class="notification">Campo cliente vacio</div>
+      <h1>Facturacion</h1>
+
+      <section class="statistics">
+        <article class="statistics-card">
+          <h2>12</h2>
+          <span>Total facturado</span>
+        </article>
+        <article class="statistics-card">
+          <h2>12</h2>
+          <span>Promedio facturado</span>
+        </article>
+        <article class="statistics-card">
+          <h2>12</h2>
+          <span>facturacion > 1000</span>
+        </article>
+      </section>
+
+      <section>
+        <form class="billing-form">
+          <h2 class="section-title">Agregar factura</h2>
+          <label for="">fecha</label>
+          <input name="date" type="date" />
+          <label for="">nro cliente</label>
+          <input name="clientNumber" type="text" />
+          <label for="">monto</label>
+          <input name="amount" type="text" />
+          <label for="">concepto facturacion</label>
+          <input name="concept" type="text" />
+          <button>emitir</button>
+        </form>
+
+        <section class="billing-history">
+          <h2 class="section-title">Facturas</h2>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>nro cliente</th>
+                  <th>fecha</th>
+                  <th>cantidad</th>
+                  <th>concepto</th>
+                </tr>
+              </thead>
+
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<!-- Una empresa de cable necesita un programa en Javascript que permita la carga y la estadística de la facturación mensual. Emite una factura por mes para cada cliente. Para ello cuenta con los siguientes datos por cada factura que emite: fecha de la factura, número de cliente (un número que puede ser de 1 a 1278), monto de la factura, concepto de facturación. El programa debe permitir la carga de todas las facturas del mes y obtener un informe que incluya: cantidad total facturada, promedio de facturación por cliente, cantidad de clientes cuya facturación es superior a mil pesos.", -->

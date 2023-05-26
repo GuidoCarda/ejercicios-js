@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+main {
+  height: 100%;
+}
+
+body {
+  font-family: "Raleway";
+  background-color: rgb(228, 230, 233);
+  display: grid;
+  place-items: center;
+}
+
+main {
+  position: relative;
+
+  width: min(800px, 90%);
+  height: auto;
+  margin-inline: auto;
+  padding-inline: 3rem;
+  padding-block: 4rem;
+
+  display: grid;
+  place-items: center;
+
+  background: white;
+  border: 1px solid rgb(205, 205, 205);
+  border-radius: 1rem;
+}
+
+main h1 {
+  position: absolute;
+  font-size: 2rem;
+  line-height: 2rem;
+  width: max-content;
+  left: 0;
+  right: 0;
+  top: -2rem;
+  margin-inline: auto;
+
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(45deg, hsl(32, 90%, 70%), hsl(32, 90%, 60%));
+  color: white;
+}
+
+@media (min-width: 500px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+  }
+  main h1 {
+    font-size: 3rem;
+    line-height: 3rem;
+    top: -2.5rem;
+  }
+}
+
+form {
+  width: 100%;
+  margin-inline: auto;
+}
+
+form button,
+form input {
+  width: 100%;
+  height: 3rem;
+  border-radius: 0.3rem;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+form button {
+  display: block;
+  margin-top: 2rem;
+  background: rgb(247, 183, 110);
+  font-weight: 700;
+  color: white;
+  border: none;
+}
+
+form button:focus {
+  outline: 2px solid rgba(214, 136, 47, 0.5);
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+form input {
+  border: 2px solid rgb(126, 137, 140);
+  background: rgb(239, 243, 243);
+  transition: all 0.5s;
+  padding-inline: 1rem;
+}
+
+form input:focus {
+  border-color: rgb(247, 183, 110);
+  outline: none;
+}
+
+/* Error en input */
+form input ~ span {
+  opacity: 0;
+  display: block;
+  height: 1.5rem;
+  color: rgb(159, 53, 53);
+  padding-block: 0.125rem;
+}
+
+form input.error ~ span {
+  opacity: 1;
+}
+
+form input.error {
+  border: 2px solid rgb(216, 94, 94);
+  color: rgb(216, 94, 94);
+  outline: none;
+}
+
+/* Resultado */
+main > section:first-of-type {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  max-width: 300px;
+  min-height: 10rem;
+  overflow: hidden;
+  padding-block: 4rem;
+  width: 100%;
+}
+
+main > section:last-child {
+  grid-column: span 2;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e4e4e4;
+  max-width: 60ch;
+  text-align: center;
+}

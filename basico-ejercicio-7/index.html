@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 7</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: "Open Sans", sans-serif;
+    }
+
+    :is(html, body) {
+      height: 100%;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    body {
+      background: linear-gradient(-135deg, transparent, rgb(225, 250, 227));
+      position: relative;
+    }
+
+    main {
+      min-height: 100%;
+      display: grid;
+      width: min(860px, 90%);
+
+      margin-inline: auto;
+      place-content: center;
+      padding-block: 3rem;
+    }
+
+    @media (min-width: 800px) {
+      main {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    form {
+      border: 2px solid rgb(241, 242, 244);
+      padding: 2.5rem 2rem;
+      border-radius: 0.3rem;
+      background: white;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: grey;
+    }
+
+    form label + input {
+      margin-bottom: 1rem;
+    }
+
+    form input,
+    form button {
+      height: 3rem;
+      width: 100%;
+      border-radius: 0.3rem;
+      border: 2px solid transparent;
+      font: inherit;
+    }
+
+    form input {
+      background: rgb(241, 242, 244);
+      padding-inline: 1rem;
+    }
+
+    input:focus {
+      border-color: rgb(119, 233, 127);
+      outline: none;
+    }
+
+    button:focus {
+      outline: 3px solid hsla(114, 72%, 69%, 0.3);
+    }
+
+    form button {
+      background-color: rgb(119, 233, 167);
+      font-weight: bold;
+      margin-top: 2rem;
+    }
+
+    section {
+      padding: 2.5rem 2rem;
+    }
+
+    section h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    section > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    section > div h2 {
+      font-size: 1.5rem;
+      white-space: break-spaces;
+    }
+
+    section > div + div {
+      margin-top: 1rem;
+      border-top: 1px solid rgb(238, 238, 238);
+      padding-top: 1rem;
+    }
+
+    section > div > span {
+      flex: 0 0 6rem;
+      aspect-ratio: 1/1;
+      display: grid;
+      place-content: center;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      background: rgb(185, 255, 186);
+      color: hsla(0, 0%, 0%, 0.721);
+      font-size: 1.5rem;
+    }
+
+    .error-msg {
+      display: flex;
+      align-items: center;
+
+      position: absolute;
+      inset: 1rem 0;
+      height: 4rem;
+      margin-inline: auto;
+      width: max-content;
+      padding: 1rem;
+
+      border-radius: 0.3rem;
+      font-weight: bold;
+      background: rgb(255, 223, 223);
+      /* background: rgb(255, 255, 255); */
+      /* border: 2px solid rgb(228, 228, 228); */
+      border: 2px solid rgb(255, 109, 109);
+      color: rgb(96, 40, 40);
+
+      box-shadow: 0px 10px 10px 1px rgba(233, 119, 119, 0.103);
+      transition: 0.5s;
+      opacity: 0;
+      visibility: hidden;
+      translate: 0px -10px;
+    }
+
+    .error-msg.visible {
+      opacity: 1;
+      visibility: visible;
+      translate: 0 0;
+    }
+  </style>
+  <body>
+    <main>
+      <form id="age-form">
+        <label for="">Edad Persona 1</label>
+        <input type="text" name="age-1" />
+        <label for="">Edad Persona 2</label>
+        <input type="text" name="age-2" />
+        <label for="">Edad Persona 3</label>
+        <input type="text" name="age-3" />
+        <button>Calcular</button>
+      </form>
+
+      <section>
+        <h1>Resultados</h1>
+        <div>
+          <h2>Promedio edad 2 mayores</h2>
+          <span id="oldest-average">-</span>
+        </div>
+        <div>
+          <h2>Total mayores de 18</h2>
+          <span id="adults-count">-</span>
+        </div>
+      </section>
+
+      <div class="error-msg"></div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<!-- "Ingresando la edad de tres personas, calcular el promedio de las dos más viejas y decir cuántas son mayores de 18 años.", -->
