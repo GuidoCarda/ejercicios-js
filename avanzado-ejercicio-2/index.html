@@ -8,7 +8,196 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1></h1>
+    <main>
+      <form>
+        <div class="input-group">
+          <label for="fullname">nombre y apellido</label>
+          <input name="fullname" type="text" />
+        </div>
+        <div class="input-group half">
+          <label for="age">edad</label>
+          <input name="age" type="number" min="18" max="110" />
+        </div>
+        <div class="input-group half">
+          <label for="gender">genero</label>
+          <select name="gender" id="">
+            <option value="masculino">masculino</option>
+            <option value="femenino">femenino</option>
+          </select>
+        </div>
+        <div class="input-group half">
+          <label for="maritalState">estado civil</label>
+          <select name="maritalState" id="">
+            <option value="soltero" selected>soltero</option>
+            <option value="casado">casado</option>
+            <option value="viudo">viudo</option>
+            <option value="divorciado">divorsciado</option>
+          </select>
+        </div>
+
+        <div class="input-group half">
+          <label for="children">cantidad de hijos</label>
+          <input name="children" type="number" min="0" max="10" />
+        </div>
+
+        <div class="input-group">
+          <label for="vehicleCategory">categoria vehiculo</label>
+          <select name="vehicleCategory" id="">
+            <option value="sedan" selected>sedan</option>
+            <option value="pickups">pickups</option>
+            <option value="standard">standard</option>
+            <option value="superior">superior</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="amount">importe dispuesto a pagar</label>
+          <input name="amount" type="number" step="0.1" />
+        </div>
+        <button>cargar</button>
+      </form>
+
+      <section class="analytics">
+        <article>
+          <span class="overMillion-count">0</span>
+          <h3>cantidad > 1000</h3>
+        </article>
+
+        <article>
+          <span class="malePercentage"> 0 </span>
+          <h3>porcentaje</h3>
+        </article>
+
+        <article>
+          <h3>Categorias</h3>
+          <ul class="categoriesCount-list"></ul>
+          <!-- <li>sedan: 12</li>
+            <li>pickups: 123</li>
+            <li>standard: 13</li>
+            <li>superiores: 123</li> -->
+        </article>
+      </section>
+
+      <section class="clients">
+        <h2>Clients list</h2>
+        <ul class="clients-list">
+          <li class="client-listItem">
+            <div class="client-label">
+              <span>Guido Cardarello</span>
+              <span class="vehicleCategory-label">sedan</span>
+              <span>$1.000.000</span>
+            </div>
+            <div class="client-content">
+              <div>
+                <span>21 años</span>
+                <span>soltero</span>
+                <span>3 hijos</span>
+              </div>
+            </div>
+          </li>
+          <li class="client-listItem">
+            <div class="client-label">
+              <span>Guido Cardarello</span>
+              <span class="vehicleCategory-label">sedan</span>
+              <span>$1.000.000</span>
+            </div>
+            <div class="client-content">
+              <div>
+                <span>21 años</span>
+                <span>soltero</span>
+                <span>3 hijos</span>
+              </div>
+            </div>
+          </li>
+          <li class="client-listItem">
+            <div class="client-label">
+              <span>Guido Cardarello</span>
+              <span class="vehicleCategory-label">sedan</span>
+              <span>$1.000.000</span>
+            </div>
+            <div class="client-content">
+              <div>
+                <span>21 años</span>
+                <span>soltero</span>
+                <span>3 hijos</span>
+              </div>
+            </div>
+          </li>
+          <li class="client-listItem">
+            <div class="client-label">
+              <span>Guido Cardarello</span>
+              <span class="vehicleCategory-label">sedan</span>
+              <span>$1.000.000</span>
+            </div>
+            <div class="client-content">
+              <div>
+                <span>21 años</span>
+                <span>soltero</span>
+                <span>3 hijos</span>
+              </div>
+            </div>
+          </li>
+          <li class="client-listItem">
+            <div class="client-label">
+              <span>Guido Cardarello</span>
+              <span class="vehicleCategory-label">sedan</span>
+              <span>$1.000.000</span>
+            </div>
+            <div class="client-content">
+              <div>
+                <span>21 años</span>
+                <span>soltero</span>
+                <span>3 hijos</span>
+              </div>
+            </div>
+          </li>
+          <li class="client-listItem">
+            <div class="client-label">
+              <span>Guido Cardarello</span>
+              <span class="vehicleCategory-label">sedan</span>
+              <span>$1.000.000</span>
+            </div>
+            <div class="client-content">
+              <div>
+                <span>21 años</span>
+                <span>soltero</span>
+                <span>3 hijos</span>
+              </div>
+            </div>
+          </li>
+          <li class="client-listItem">
+            <div class="client-label">
+              <span>Guido Cardarello</span>
+              <span class="vehicleCategory-label">sedan</span>
+              <span>$1.000.000</span>
+            </div>
+            <div class="client-content">
+              <div>
+                <span>21 años</span>
+                <span>soltero</span>
+                <span>3 hijos</span>
+              </div>
+            </div>
+          </li>
+          <li class="client-listItem">
+            <div class="client-label">
+              <span>Guido Cardarello</span>
+              <span class="vehicleCategory-label">sedan</span>
+              <span>$1.000.000</span>
+            </div>
+            <div class="client-content">
+              <div>
+                <span>21 años</span>
+                <span>soltero</span>
+                <span>3 hijos</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <section></section>
+
     <script src="script.js"></script>
   </body>
 </html>

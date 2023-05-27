@@ -3,3 +3,191 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+main {
+  background: rgb(210, 210, 210);
+  min-height: 100%;
+  padding-block: 3rem;
+}
+
+form {
+  width: min(480px, calc(100% - 4rem));
+  margin-inline: auto;
+  padding: 3rem 2rem;
+  background: rgb(246, 246, 246);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  border-radius: 1.5rem;
+}
+
+input,
+button,
+select {
+  width: 100%;
+  height: 3rem;
+  border-radius: 0.5rem;
+  outline: 2px solid transparent;
+  border: 1px solid transparent;
+  font: inherit;
+}
+
+label {
+  display: block;
+  color: gray;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+input,
+select {
+  padding-inline: 1rem;
+}
+
+.input-group:not(.half) {
+  grid-column: span 2;
+}
+
+form button {
+  margin-top: 1.5rem;
+  grid-column: 2/3;
+}
+
+.clients {
+  /* background: red; */
+}
+.analytics {
+  /* background-color: blue; */
+}
+
+.analytics {
+  display: grid;
+  gap: 1rem 1.5rem;
+  margin-block: 3rem;
+}
+
+.analytics > article {
+  background: white;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.analytics > article span {
+  font-size: 2.5rem;
+}
+
+ul {
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .analytics {
+    display: grid;
+    gap: 1rem 1.5rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    margin-block: 3rem;
+  }
+  .analytics > article:nth-child(1) {
+    /* background: yellow; */
+    grid-column: 1/2;
+    padding-block: 2rem 1rem;
+  }
+  .analytics > article:nth-child(2) {
+    /* background: red; */
+    grid-column: 1/2;
+    padding-block: 2rem 1rem;
+  }
+
+  .analytics > article:nth-child(3) {
+    /* background: purple; */
+    grid-row: 1/-1;
+    grid-column: 2/4;
+  }
+}
+
+.analytics,
+.clients {
+  width: min(1080px, calc(100% - 4rem));
+  margin-inline: auto;
+  height: 100%;
+}
+
+.analytics > article:nth-child(3) h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.analytics > article:nth-child(3) ul {
+  font-size: 1.25rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.clients h2 {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.clients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.client-listItem {
+  padding: 1rem;
+  background: white;
+  border-radius: 1rem;
+}
+
+.clients-list .client-label {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  /* height: 3rem; */
+  padding-inline: 1rem;
+  border-radius: 0.5rem;
+}
+
+.client-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  /* transition: grid-template-rows 500ms; */
+  transition: all 500ms;
+  background: white;
+}
+
+.client-content > div {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.client-listItem:hover .client-content {
+  grid-template-rows: 1fr;
+  padding-block: 2rem;
+}
+
+.vehicleCategory-label {
+  background: rgb(227, 193, 193);
+  display: block;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  height: 1.5rem;
+  padding-inline: 0.5rem;
+  border-radius: 5px;
+}
