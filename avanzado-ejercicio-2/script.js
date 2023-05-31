@@ -1,5 +1,4 @@
 // desc: "Una concesionaria de automóviles registra en una planilla los datos de las personas que vienen a preguntar por algún plan o para la compra de algún automóvil. Los vehículos los tiene divididos en cuatro categorías que están numeradas del 1 al 4, a saber: 1-sedan, 2-pickups, 3-standard, 4-superiores. Los datos que se le piden a los interesados son: Nombre y apellido, edad, género, estado civil, cantidad de hijos, categoría del vehículo que le interesa, importe que está dispuesto a pagar por un auto. El programa que la concesionaria necesita debe permitir cargar los datos necesarios para obtener los siguientes resultados: cantidad de personas que consultan y se interesan por un vehículo de un monto superior a los $1.000.000, cantidad de personas que optaron por cada categoría, porcentaje de hombres que hicieron consultas respecto al total.",
-console.log("hello word");
 
 // Categorias
 // - 1 sedan
@@ -21,13 +20,26 @@ console.log("hello word");
 // Cantidad de personas por cada categoria
 // Porcentaje de hombres que hicieron consultas respecto al total
 
-const clients = [];
+const MOCK_CLIENT = {
+  fullname: "Guido Cardarelli",
+  age: "21",
+  gender: "masculino",
+  maritalState: "soltero",
+  children: 0,
+  vehicleCategory: "sedan",
+  amount: "1000004",
+};
+
+//mock clients
+const clients = Array(10).fill(MOCK_CLIENT);
+
+// const clients = [];
 
 const form = document.querySelector("form");
 const inputs = document.querySelectorAll("input");
 const clientListEl = document.querySelector(".clients-list");
 const overMillionEl = document.querySelector(".overMillion-count");
-const categoriesListEl = document.querySelector(".categoriesCount-list");
+const categoriesListEl = document.querySelector(".categories-list");
 const malePercentageEl = document.querySelector(".malePercentage");
 
 form.addEventListener("submit", handleSubmit);
@@ -62,43 +74,66 @@ function getAnalytics() {
   let maleCount = 0;
 
   for (const client of clients) {
-    //Calcular cuantos consultan por un vehiculo superor al millon
+    //Contar cuantos consultan por un vehiculo superor al millon
     if (client.amount > 1_000_000) {
       overMillionCount += 1;
     }
 
-    //Calcular cuantos consultan por cada categoria
+    //Contar cuantos consultan por cada categoria
     categoriesCount[client.vehicleCategory] += 1;
 
+    //Contar cuantos son masculinos
     if (client.gender === "masculino") maleCount++;
   }
 
   //Calcular porcentaje masculino
   const malePercentage = Math.round((maleCount * 100) / clients.length) || 0;
 
-  console.log(malePercentage);
-
   return { overMillionCount, categoriesCount, malePercentage };
 }
 
 function renderClients() {
+  //Si ya hay clientes renderizados, limpio y renderizo nuevamente
   if (clientListEl.hasChildNodes()) {
     clientListEl.innerHTML = "";
   }
 
+  //Si no hay clientes registrados muestro el estado vacio
+  if (!clients.length) {
+    const li = document.createElement("li");
+    li.textContent = "Aun no se han registrado posibles clientes";
+    li.classList.add("empty-state");
+
+    clientListEl.appendChild(li);
+  }
+
+  //Genero un Li por cada cliente y lo voy mostrando en pantalla
   clients.forEach((client) => {
     const li = document.createElement("li");
 
-    const { fullname, age, maritalState, children, vehicleCategory } = client;
+    const {
+      fullname,
+      age,
+      gender,
+      maritalState,
+      children,
+      vehicleCategory,
+      amount,
+    } = client;
 
     li.innerHTML = `
-      <span>${fullname}</span>
-      <span>${age}</span>
-      <span>${maritalState}</span>
-      <span>${children}</span>
-      <span>${vehicleCategory}</span>
+      <div>
+        <p>${fullname}</p>
+        <span class="age">${age} años</span>
+      </div>
+      <p>${gender}</p>
+      <p>${maritalState}</p>
+      <p>${children || "Sin"} hijos</p>
+      <p class="amount">$${amount}</p>
+      <span class="category-label ${vehicleCategory}">${vehicleCategory}</span>
     `;
 
+    li.classList.add("client-list-item");
     clientListEl.appendChild(li);
   });
 }
@@ -114,9 +149,19 @@ function renderAnalytics() {
   for (const category in categoriesCount) {
     //Creo el list item
     const li = document.createElement("li");
-    //Populo su contenido
-    li.textContent = `${category}: ${categoriesCount[category]}`;
-    //Añexo el list item a la lista
+    //Creo los componentes del li
+    const h3 = document.createElement("h3");
+    const span = document.createElement("span");
+
+    //Agrego clases y contenido a c/componente del li
+    h3.textContent = category;
+    h3.classList.add("category-title");
+    span.textContent = categoriesCount[category];
+    span.classList.add("category-count");
+
+    //Populo el li
+    li.append(h3, span);
+    //Añexo el li a la lista
     categoriesListEl.appendChild(li);
   }
 
