@@ -31,16 +31,16 @@ const MOCK_CLIENT = {
 };
 
 //mock clients
-const clients = Array(10).fill(MOCK_CLIENT);
+// const clients = Array(3).fill(MOCK_CLIENT);
 
-// const clients = [];
+const clients = [];
 
 const form = document.querySelector("form");
 const inputs = document.querySelectorAll("input");
 const clientListEl = document.querySelector(".clients-list");
 const overMillionEl = document.querySelector(".overMillion-count");
 const categoriesListEl = document.querySelector(".categories-list");
-const malePercentageEl = document.querySelector(".malePercentage");
+const percentagesEl = document.querySelector(".malePercentage");
 
 form.addEventListener("submit", handleSubmit);
 
@@ -54,10 +54,14 @@ function handleSubmit(e) {
     clients.push(client);
     renderClients();
     renderAnalytics();
+    form.reset();
   } else {
     alert("algo salio mal :/");
   }
 }
+
+const getPercentage = (partialValue, total) =>
+  Math.round((partialValue * 100) / total) || 0;
 
 function getAnalytics() {
   // Cantidad de pesonas que consultan y se interesan en un vehiculo superior a 1.000.000
@@ -86,10 +90,34 @@ function getAnalytics() {
     if (client.gender === "masculino") maleCount++;
   }
 
-  //Calcular porcentaje masculino
-  const malePercentage = Math.round((maleCount * 100) / clients.length) || 0;
+  //Calcular porcentajes por genero
+  let genderPercentages = [0, 0];
 
-  return { overMillionCount, categoriesCount, malePercentage };
+  if (clients.length) {
+    genderPercentages[0] = getPercentage(maleCount, clients.length);
+
+    if (genderPercentages[0] > 0) {
+      genderPercentages[1] = 100 - genderPercentages[0];
+    } else {
+      genderPercentages[1] = 100;
+    }
+  }
+
+  return {
+    overMillionCount,
+    categoriesCount,
+    genderPercentages,
+  };
+}
+
+function renderBarGraph(values) {
+  const barsEl = document.querySelectorAll(".bar");
+  const percentagesEl = document.querySelectorAll(".percentage");
+
+  values.forEach((value, idx) => {
+    barsEl[idx].firstElementChild.style.width = `${value}%`;
+    percentagesEl[idx].textContent = `${value}%`;
+  });
 }
 
 function renderClients() {
@@ -139,7 +167,8 @@ function renderClients() {
 }
 
 function renderAnalytics() {
-  const { overMillionCount, categoriesCount, malePercentage } = getAnalytics();
+  const { overMillionCount, categoriesCount, genderPercentages } =
+    getAnalytics();
 
   // Si la lista de categorias tiene contenido lo limpio
   if (categoriesListEl.hasChildNodes()) {
@@ -149,6 +178,7 @@ function renderAnalytics() {
   for (const category in categoriesCount) {
     //Creo el list item
     const li = document.createElement("li");
+
     //Creo los componentes del li
     const h3 = document.createElement("h3");
     const span = document.createElement("span");
@@ -166,7 +196,8 @@ function renderAnalytics() {
   }
 
   overMillionEl.textContent = overMillionCount;
-  malePercentageEl.textContent = `%${malePercentage}`;
+  // malePercentageEl.textContent = `%${malePercentage}`;
+  renderBarGraph(genderPercentages);
 }
 
 renderClients();
