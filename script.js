@@ -121,7 +121,7 @@ const EXERCISES = [
   {
     title: "Ejercicio 1",
     desc: "Deberá cargar un vector de 100 elementos por medio de un programa en Javascript, con números aleatorios entre -100 y 100. Realizar una función para mostrar los máximos relativos. Un máximo relativo es aquel término que es mayor que sus dos adyacentes.",
-    done: false,
+    done: true,
     category: "arreglos",
   },
   {

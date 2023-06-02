@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  font-family: "Outfit", sans-serif;
+}
+
+main {
+  min-height: 100%;
+  padding-block: 3rem;
+}
+
+ul {
+  list-style: none;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+.container {
+  width: min(1080px, calc(100% - 4rem));
+  margin-inline: auto;
+}
+
+section > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+section > header button {
+  height: 3rem;
+  padding-inline: 1rem;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background: rgb(35, 35, 35);
+  color: white;
+  white-space: nowrap;
+}
+
+.numbers-list {
+  columns: 5;
+}
+
+.calculations-list {
+  margin-block: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.calculations-list > li {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: rgb(35, 35, 35);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.calculations-list > li h2 {
+  font-size: 1.5rem;
+  color: rgb(226, 226, 226);
+  font-weight: 300;
+  /* width: 10rem; */
+  /* background: white; */
+  text-align: center;
+}
+
+.calculations-list > li span {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.negatives {
+  min-height: 10rem;
+  width: 100%;
+}
+
+.negatives h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.exercise {
+  background: rgb(24, 28, 38);
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exercise > div {
+  margin-inline: auto;
+  background: rgb(16, 18, 25);
+  border-radius: 0.5rem;
+  padding: 3rem 2rem;
+  width: min(800px, 90%);
+}
+
+.exercise > div > .exercise-title {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+}
+
+.exercise > div > .exercise-desc {
+  color: rgb(164, 167, 175);
+  font-size: 1.25rem;
+}
+
+.exercise > div > .exercise-desc + .exercise-desc {
+  margin-top: 1rem;
+}
