@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  min-height: 100%;
+  padding-inline: 3rem;
+  padding-block: 3rem;
+  display: grid;
+  place-content: center;
+}
+
+body {
+  line-height: 1.5;
+  font-family: sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+.input-group {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.input-group > label {
+  color: gray;
+}
+
+select,
+button {
+  height: 3rem;
+  border: 1px solid black;
+  font: inherit;
+  cursor: pointer;
+  padding-inline: 1rem;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: end;
+  gap: 1.5rem;
+}
+
+.results-section {
+  margin-top: 3rem;
+}
+
+.results-section .card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.results-section .card span {
+  font-size: 2rem;
+}
+
+.months-list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  margin-top: 2rem;
+}
+
+.months-list > li {
+  display: grid;
+  place-items: center;
+  padding-block: 0.5rem;
+  border: 1px solid rgb(204, 204, 204);
+  background: #e8e9ea;
+  width: 8rem;
+  flex-shrink: 0;
+}
+
+.months-list > li h3 {
+  font-size: 1rem;
+  order: 1;
+  position: relative;
+  top: -0.25rem;
+  color: grey;
+}
+
+.months-list > li span {
+  font-size: 2rem;
+  order: 0;
+  font-weight: bold;
+}
+
+.exercise {
+  background: rgb(24, 28, 38);
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exercise > div {
+  margin-inline: auto;
+  background: rgb(16, 18, 25);
+  border-radius: 0.5rem;
+  padding: 3rem 2rem;
+  width: min(800px, 90%);
+}
+
+.exercise > div > .exercise-title {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+}
+
+.exercise > div > .exercise-desc {
+  color: rgb(164, 167, 175);
+  font-size: 1.25rem;
+}
+
+.exercise > div > .exercise-desc + .exercise-desc {
+  margin-top: 1rem;
+}

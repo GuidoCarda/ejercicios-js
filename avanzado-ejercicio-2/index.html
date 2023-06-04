@@ -9,39 +9,16 @@
   </head>
   <body>
     <main>
+      <button id="theme-toggle">toggle mode</button>
       <section class="main-section">
         <form>
           <div class="input-group">
-            <label for="fullname">nombre y apellido</label>
-            <input name="fullname" type="text" />
-          </div>
-          <div class="input-group half">
-            <label for="age">edad</label>
-            <input name="age" type="number" min="18" max="110" />
-          </div>
-          <div class="input-group half">
-            <label for="gender">genero</label>
-            <select name="gender" id="">
-              <option value="masculino">masculino</option>
-              <option value="femenino">femenino</option>
-            </select>
-          </div>
-          <div class="input-group half">
-            <label for="maritalState">estado civil</label>
-            <select name="maritalState" id="">
-              <option value="soltero" selected>soltero</option>
-              <option value="casado">casado</option>
-              <option value="viudo">viudo</option>
-              <option value="divorciado">divorsciado</option>
-            </select>
+            <label for="amount">importe dispuesto a pagar</label>
+            <input name="amount" type="number" step="0.1" />
+            <span class="icon"></span>
           </div>
 
           <div class="input-group half">
-            <label for="children">cantidad de hijos</label>
-            <input name="children" type="number" min="0" max="10" />
-          </div>
-
-          <div class="input-group">
             <label for="vehicleCategory">categoria vehiculo</label>
             <select name="vehicleCategory" id="">
               <option value="sedan" selected>sedan</option>
@@ -50,10 +27,14 @@
               <option value="superior">superior</option>
             </select>
           </div>
-          <div class="input-group">
-            <label for="amount">importe dispuesto a pagar</label>
-            <input name="amount" type="number" step="0.1" />
+          <div class="input-group half">
+            <label for="gender">genero</label>
+            <select name="gender" id="">
+              <option value="masculino">masculino</option>
+              <option value="femenino">femenino</option>
+            </select>
           </div>
+
           <button>cargar</button>
         </form>
 
@@ -114,7 +95,34 @@
       </section>
     </main>
 
-    <section></section>
+    <section class="exercise">
+      <div>
+        <h3 class="exercise-title">Ejercicio 2</h3>
+        <p class="exercise-desc">
+          Una concesionaria de automóviles registra en una planilla los datos de
+          las personas que vienen a preguntar por algún plan o para la compra de
+          algún automóvil.
+        </p>
+        <p class="exercise-desc">
+          Los vehículos los tiene divididos en cuatro categorías que están
+          numeradas del 1 al 4, a saber: 1-sedan, 2-pickups, 3-standard,
+          4-superiores.
+        </p>
+        <p class="exercise-desc">
+          Los datos que se le piden a los interesados son: Nombre y apellido,
+          edad, género, estado civil, cantidad de hijos, categoría del vehículo
+          que le interesa, importe que está dispuesto a pagar por un auto.
+        </p>
+        <p class="exercise-desc">
+          El programa que la concesionaria necesita debe permitir cargar los
+          datos necesarios para obtener los siguientes resultados: cantidad de
+          personas que consultan y se interesan por un vehículo de un monto
+          superior a los $1.000.000, cantidad de personas que optaron por cada
+          categoría, porcentaje de hombres que hicieron consultas respecto al
+          total.
+        </p>
+      </div>
+    </section>
 
     <script src="script.js"></script>
   </body>

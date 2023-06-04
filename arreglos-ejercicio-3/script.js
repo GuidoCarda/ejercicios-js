@@ -1,7 +1,6 @@
 const numbersListEl = document.querySelector(".numbers-list");
 const calculationsEls = document.querySelectorAll(".calculations-list span");
 const negativesContainerEl = document.querySelector(".negatives");
-
 const buttonEl = document.querySelector("button");
 
 buttonEl.addEventListener("click", main);
@@ -18,6 +17,22 @@ function getRandomUniqueNumbers(count, min, max) {
   }
 
   return Array.from(numbers);
+}
+
+function getRandomUniqueNumbers2(count, min, max) {
+  const numbers = [];
+
+  while (numbers.length < count) {
+    const number = getRandomNumberInRange(min, max);
+    if (numbers.indexOf(number) !== 0) {
+      numbers.push(number);
+    }
+    // if (!numbers.includes(number)) {
+    //   numbers.push(number);
+    // }
+  }
+
+  return numbers;
 }
 
 function calculations(values) {
@@ -39,18 +54,7 @@ function calculations(values) {
 }
 
 function printListValues(list, values) {
-  const listItems = [];
-
-  values.forEach((value) => {
-    const li = `
-      <li>
-        ${value}
-      </li>
-    `;
-    listItems.push(li);
-  });
-
-  // console.log(listItems.join(""));
+  const listItems = values.map((value) => `<li>${value}<li/>`);
   list.innerHTML = listItems.join("");
 }
 
@@ -60,6 +64,15 @@ function printCalculations(calculations) {
   });
 }
 
+function printNegatives(negatives) {
+  const negativesContent = negatives.length
+    ? `<h2>Numeros negativos encontrados:</h2>
+       <span>${negatives.join(" | ")}</span>`
+    : "<h2>No se encontraron numeros negativos</h2>";
+
+  negativesContainerEl.innerHTML = negativesContent;
+}
+
 function main() {
   const uniqueNumbers = getRandomUniqueNumbers(50, -500, 500);
   const [sum, negativesCount, positivesCount, negatives] =
@@ -67,21 +80,7 @@ function main() {
 
   printListValues(numbersListEl, uniqueNumbers);
   printCalculations([sum, negativesCount, positivesCount]);
-
-  let negativesContent = "";
-
-  if (negativesCount) {
-    negativesContent = `
-      <h2>Numeros negativos encontrados: </h2>
-      <span>
-        ${negatives.join(" | ")}
-      </span>
-    `;
-  } else {
-    negativesContent = "<h2>No se encontraron numeros negativos</h2>";
-  }
-
-  negativesContainerEl.innerHTML = negativesContent;
+  printNegatives(negatives);
 }
 
 main();

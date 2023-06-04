@@ -1,0 +1,142 @@
+<!DOCTYPE html/>
+
+<html>
+  <head>
+    <title>Avanzado ejercicio 3</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <form>
+        <div class="input-group">
+          <label for="gender">Genero</label>
+          <select name="gender" id="gender">
+            <option value="male">masculino</option>
+            <option value="female">femenino</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="day">Dia de la semana</label>
+          <select name="day" id="day">
+            <option value="0">Lunes</option>
+            <option value="1">Martes</option>
+            <option value="2">Miercoles</option>
+            <option value="3">Jueves</option>
+            <option value="4">Viernes</option>
+            <option value="5">Sabado</option>
+            <option value="6">Domingo</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="month">Mes</label>
+          <select name="month" id="month">
+            <option value="0">Enero</option>
+            <option value="1">Febrero</option>
+            <option value="2">Marzo</option>
+            <option value="3">Abril</option>
+            <option value="4">Mayo</option>
+            <option value="5">Junio</option>
+            <option value="6">Julio</option>
+            <option value="7">Agosto</option>
+            <option value="8">Septiembre</option>
+            <option value="9">Octubre</option>
+            <option value="10">Noviembre</option>
+            <option value="11">Diciembre</option>
+          </select>
+        </div>
+        <button>cargar</button>
+      </form>
+      <section class="results-section">
+        <div class="card">
+          <h2>Cantidas encuestas:</h2>
+          <span class="survey-count">0</span>
+        </div>
+        <div class="card">
+          <h2>Dia de la semana más preferido:</h2>
+          <span class="prefered-day">-</span>
+        </div>
+        <div class="card">
+          <h2>Prefieren meses pares:</h2>
+          <span class="prefered-even-month-count">0</span>
+        </div>
+        <div class="card">
+          <h2>Porcentaje hombres que no prefieren el domingo:</h2>
+          <span class="male-percentage">0%</span>
+        </div>
+        <ul class="months-list">
+          <li>
+            <h3>enero</h3>
+            <span class="month-count">0</span>
+          </li>
+          <li>
+            <h3>febrero</h3>
+            <span class="month-count">0</span>
+          </li>
+          <li>
+            <h3>marzo</h3>
+            <span class="month-count">0</span>
+          </li>
+          <li>
+            <h3>abril</h3>
+            <span class="month-count">0</span>
+          </li>
+          <li>
+            <h3>mayo</h3>
+            <span class="month-count">0</span>
+          </li>
+          <li>
+            <h3>junio</h3>
+            <span class="month-count">0</span>
+          </li>
+          <li>
+            <h3>julio</h3>
+            <span class="month-count">0</span>
+          </li>
+          <li>
+            <h3>agosto</h3>
+            <span class="month-count">0</span>
+          </li>
+          <li>
+            <h3>septiembre</h3>
+            <span class="month-count">0</span>
+          </li>
+          <li>
+            <h3>octubre</h3>
+            <span class="month-count">0</span>
+          </li>
+          <li>
+            <h3>noviembre</h3>
+            <span class="month-count">0</span>
+          </li>
+          <li>
+            <h3>diciembre</h3>
+            <span class="month-count">0</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <section class="exercise">
+      <div>
+        <h3 class="exercise-title">Ejercicio 3</h3>
+        <p class="exercise-desc">
+          Salimos a la calle a hacer una encuesta. En la misma preguntábamos:
+          Edad, género, día de la semana que más le gusta, mes del año que más
+          le gusta.
+        </p>
+        <p class="exercise-desc">
+          A partir del volcado de esos datos a un programa, obtener: cantidad de
+          encuestas realizadas, día de la semana que más prefiere la gente,
+          cantidad de personas que prefieren meses pares, cantidad de personas
+          que prefieren cada mes del año, porcentaje de hombres que no prefieren
+          el domingo respecto al total de hombres.
+        </p>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>

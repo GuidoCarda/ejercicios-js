@@ -31,9 +31,9 @@ const MOCK_CLIENT = {
 };
 
 //mock clients
-// const clients = Array(3).fill(MOCK_CLIENT);
+const clients = Array(3).fill(MOCK_CLIENT);
 
-const clients = [];
+// const clients = [];
 
 const form = document.querySelector("form");
 const inputs = document.querySelectorAll("input");
@@ -42,6 +42,12 @@ const overMillionEl = document.querySelector(".overMillion-count");
 const categoriesListEl = document.querySelector(".categories-list");
 const percentagesEl = document.querySelector(".malePercentage");
 
+const themeToggleBtn = document.querySelector("#theme-toggle");
+
+themeToggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
+
 form.addEventListener("submit", handleSubmit);
 
 function handleSubmit(e) {
@@ -49,15 +55,14 @@ function handleSubmit(e) {
   const formData = new FormData(e.target);
   const client = Object.fromEntries(formData);
 
-  if (Object.entries(client).every((entry) => entry[1].length)) {
-    console.log("entro");
-    clients.push(client);
-    renderClients();
-    renderAnalytics();
-    form.reset();
-  } else {
-    alert("algo salio mal :/");
+  if (!client.amount) {
+    return alert("Campo importe vacio");
   }
+
+  clients.push(client);
+  renderClients();
+  renderAnalytics();
+  form.reset();
 }
 
 const getPercentage = (partialValue, total) =>
@@ -139,24 +144,10 @@ function renderClients() {
   clients.forEach((client) => {
     const li = document.createElement("li");
 
-    const {
-      fullname,
-      age,
-      gender,
-      maritalState,
-      children,
-      vehicleCategory,
-      amount,
-    } = client;
+    const { gender, vehicleCategory, amount } = client;
 
     li.innerHTML = `
-      <div>
-        <p>${fullname}</p>
-        <span class="age">${age} años</span>
-      </div>
       <p>${gender}</p>
-      <p>${maritalState}</p>
-      <p>${children || "Sin"} hijos</p>
       <p class="amount">$${amount}</p>
       <span class="category-label ${vehicleCategory}">${vehicleCategory}</span>
     `;

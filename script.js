@@ -127,13 +127,13 @@ const EXERCISES = [
   {
     title: "Ejercicio 2",
     desc: "Escribir un programa en Javascript que cargue en un array las notas de 30 alumnos de un curso (hacerlo con números al azar entre 0 y 10). Luego deberá armar una función llamada Abanderado que devolverá la nota de los 3 mejores alumnos. Fuera de la función, deberá imprimir las 3 notas y la ubicación de cada una dentro del array.",
-    done: false,
+    done: true,
     category: "arreglos",
   },
   {
     title: "Ejercicio 3",
     desc: "Escribir un programa en Javascript que cargue un array de 50 elementos con números al azar entre -500 y 500, y que no se repitan. Luego deberá armar una función llamada Calculos que devolverá la suma de todos los elementos del array, la cantidad de números positivos y la cantidad de números negativos que se encuentren en el array. Fuera de la función, deberá imprimir esos tres valores. Por último, deberá armar un nuevo array sólo con los números negativos encontrados en el anterior. Deberá imprimirlo por pantalla, y en caso de que no se haya encontrado ningún número negativo, informar por pantalla de esta situación.",
-    done: false,
+    done: true,
     category: "arreglos",
   },
 ];
