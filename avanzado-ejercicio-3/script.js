@@ -16,51 +16,54 @@ const DAYS = [
 
 const form = document.querySelector("form");
 const monthCountEls = document.querySelectorAll(".month-count");
+const resultCardsEls = document.querySelectorAll(".card");
 const surveyCountEl = document.querySelector(".survey-count");
 const preferedDayEl = document.querySelector(".prefered-day");
 const malePercentageEl = document.querySelector(".male-percentage");
-const preferedEvenMountCountEl = document.querySelector(
+const evenMonthPrefCountEl = document.querySelector(
   ".prefered-even-month-count"
 );
 
 form.addEventListener("submit", handleSubmit);
 
-const dayPreferenceCount = Array(7).fill(0); // [0,0,0,0,0,0,0]
-const monthPreferenceCount = Array(12).fill(0);
-let evenMonthPreferenceCount = 0;
+const dayPrefCount = Array(7).fill(0); // [0,0,0,0,0,0,0]
+const monthPrefCount = Array(12).fill(0);
+let evenMonthPrefCount = 0;
 let maleCount = 0;
-let nonSundayPreferringMaleCount = 0;
+let nonSundayPrefMaleCount = 0;
 
 function handleSubmit(e) {
   e.preventDefault();
   const formData = new FormData(e.target);
   const [gender, day, month] = Object.values(Object.fromEntries(formData));
 
-  dayPreferenceCount[day]++;
-  monthPreferenceCount[month]++;
+  dayPrefCount[day]++;
+  monthPrefCount[month]++;
   if (gender === "male") maleCount++;
-  if (gender === "male" && day !== "6") nonSundayPreferringMaleCount++;
-  if ((Number(month) + 1) % 2 === 0) evenMonthPreferenceCount++;
+  if (gender === "male" && day !== "6") nonSundayPrefMaleCount++;
+  if ((Number(month) + 1) % 2 === 0) evenMonthPrefCount++;
 
-  const nonSundayPreferringMalePercentage = Math.round(
-    (nonSundayPreferringMaleCount * 100) / maleCount
-  );
+  const nonSundayPrefMalePercentage =
+    Math.round((nonSundayPrefMaleCount * 100) / maleCount) || 0;
 
-  const responsesCount = dayPreferenceCount.reduce(
-    (acum, curr) => (acum += curr),
-    0
-  );
+  const responsesCount = dayPrefCount.reduce((acum, curr) => (acum += curr), 0);
 
-  const preferedDay = dayPreferenceCount
+  const preferedDay = dayPrefCount
     .map((count, day) => [day, count])
     .sort((a, b) => b[1] - a[1])
     .at(0)[0];
 
-  malePercentageEl.textContent = `${nonSundayPreferringMalePercentage}%`;
-  preferedDayEl.textContent = DAYS[preferedDay];
-  preferedEvenMountCountEl.textContent = evenMonthPreferenceCount;
+  //Total encuestados
   surveyCountEl.textContent = responsesCount;
-  monthPreferenceCount.forEach((monthCount, monthIndex) => {
-    monthCountEls[monthIndex].textContent = monthCount;
+  //Porcenta masculino que no prefiere los domingos
+  malePercentageEl.textContent = `${nonSundayPrefMalePercentage}%`;
+  //Dia preferido
+  preferedDayEl.textContent = DAYS[preferedDay];
+  //Total que prefiere meses pares
+  evenMonthPrefCountEl.textContent = evenMonthPrefCount;
+
+  //Total por mes
+  monthPrefCount.forEach((count, index) => {
+    monthCountEls[index].textContent = count;
   });
 }

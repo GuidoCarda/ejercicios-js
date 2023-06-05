@@ -10,7 +10,7 @@
   </head>
   <body>
     <main>
-      <form>
+      <form class="container">
         <div class="input-group">
           <label for="gender">Genero</label>
           <select name="gender" id="gender">
@@ -51,22 +51,25 @@
         </div>
         <button>cargar</button>
       </form>
-      <section class="results-section">
-        <div class="card">
-          <h2>Cantidas encuestas:</h2>
-          <span class="survey-count">0</span>
-        </div>
-        <div class="card">
-          <h2>Dia de la semana más preferido:</h2>
-          <span class="prefered-day">-</span>
-        </div>
-        <div class="card">
-          <h2>Prefieren meses pares:</h2>
-          <span class="prefered-even-month-count">0</span>
-        </div>
-        <div class="card">
-          <h2>Porcentaje hombres que no prefieren el domingo:</h2>
-          <span class="male-percentage">0%</span>
+
+      <section class="container results-section">
+        <div class="cards-container">
+          <div class="card">
+            <span class="survey-count">0</span>
+            <h2>Cantidas encuestas</h2>
+          </div>
+          <div class="card">
+            <span class="prefered-day">-</span>
+            <h2>Dia de la semana más preferido</h2>
+          </div>
+          <div class="card">
+            <span class="prefered-even-month-count">0</span>
+            <h2>Prefieren meses pares</h2>
+          </div>
+          <div class="card">
+            <span class="male-percentage">0%</span>
+            <h2>hombres que no prefieren el domingo</h2>
+          </div>
         </div>
         <ul class="months-list">
           <li>

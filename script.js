@@ -103,7 +103,7 @@ const EXERCISES = [
   {
     title: "Ejercicio 3",
     desc: "Salimos a la calle a hacer una encuesta. En la misma preguntábamos: Edad, género, día de la semana que más le gusta, mes del año que más le gusta. A partir del volcado de esos datos a un programa, obtener: cantidad de encuestas realizadas, día de la semana que más prefiere la gente, cantidad de personas que prefieren meses pares, cantidad de personas que prefieren cada mes del año, porcentaje de hombres que no prefieren el domingo respecto al total de hombres.",
-    done: false,
+    done: true,
     category: "avanzado",
   },
   {
