@@ -14,9 +14,24 @@
 const CANT_MATERIAS = 10;
 
 const form = document.querySelector("form");
-const resultEl = document.querySelector(".result");
+const fileNumberInput = document.querySelector("#nroLegajo");
+const standardBearersEl = document.querySelector(".standard-bearers-list");
+const averagesEls = document.querySelectorAll(".average");
+const avgGreaterThanSixEl = document.querySelector(".average-count");
 
 form.addEventListener("submit", handleSubmit);
+fileNumberInput.addEventListener("blur", handleBlur);
+
+function handleBlur(e) {
+  const fileNumber = e.target.value;
+
+  //Chekear si ya se cargo el legajo del alumno
+  if (alumnos.has(fileNumber)) {
+    fileNumberInput.classList.add("error");
+  } else {
+    fileNumberInput.classList.remove("error");
+  }
+}
 
 const alumnos = new Map();
 
@@ -31,7 +46,6 @@ function handleSubmit(e) {
   e.preventDefault();
   const formData = new FormData(e.target);
   const alumno = Object.fromEntries(formData);
-  console.log(alumno);
 
   if (!alumno.nroLegajo || !alumno.materiasRendidas || !alumno.promedio) {
     return alert("campos vacios");
@@ -54,8 +68,22 @@ function handleSubmit(e) {
   }
 
   alumnos.set(alumno.nroLegajo, [alumno.materiasRendidas, alumno.promedio]);
+
   const analiticas = obtenerAnaliticas(alumnos);
   mostrarAnaliticas(analiticas);
+}
+
+function mostrarAlumnos(alumnos) {
+  const listaAlumnos = document.createElement("ul");
+
+  for (const alumno of alumnos.entries()) {
+    const [legajo, [materiasRendidas, promedio]] = alumno;
+    const li = document.createElement("li");
+    li.textContent = `alumno ${legajo}: ${materiasRendidas} materias rendidas con un promedio de ${promedio}`;
+    listaAlumnos.appendChild(li);
+  }
+
+  resultEl.append(listaAlumnos);
 }
 
 function mostrarAnaliticas({
@@ -63,30 +91,29 @@ function mostrarAnaliticas({
   promedios = [],
   abanderados = [],
 }) {
-  if (resultEl.hasChildNodes()) resultEl.innerHTML = "";
+  avgGreaterThanSixEl.textContent = `${promMayorQueSeis}`;
 
-  const h2PromMayorQueSeis = document.createElement("h2");
-  h2PromMayorQueSeis.textContent = promMayorQueSeis;
+  if (standardBearersEl.hasChildNodes()) {
+    console.log("entro");
+    standardBearersEl.innerHTML = "";
+  }
 
-  const listaAbanderados = document.createElement("ul");
+  console.log(abanderados);
+
   abanderados.forEach((nroLegajo) => {
     const li = document.createElement("li");
-    li.textContent = `Alumno nro: ${nroLegajo}`;
-    listaAbanderados.appendChild(li);
+    li.textContent = `Alumno ${nroLegajo}`;
+    li.classList.add("standard-bearer");
+    standardBearersEl.appendChild(li);
   });
 
-  const listaPromedios = document.createElement("ul");
   promedios.forEach((cant, idx) => {
-    const li = document.createElement("li");
-    li.textContent = `nota [${idx + 1}] : ${cant}`;
-    listaPromedios.appendChild(li);
+    averagesEls[idx].textContent = cant;
   });
-
-  resultEl.append(h2PromMayorQueSeis, listaAbanderados, listaPromedios);
 }
 
-function cargarAlumnos(alumnos) {
-  Array(20)
+function cargarAlumnos(alumnos, cant = 20) {
+  Array(cant)
     .fill(0)
     .forEach((_, i) => {
       alumnos.set(String(i + 1), [
@@ -111,10 +138,16 @@ function obtenerAnaliticas(alumnos) {
 
     promedios[prom - 1]++;
 
-    if (prom === 10) {
+    if (Number(prom) === 10) {
       abanderados.push(nroLegajo);
     }
   }
+
+  const cantAlumnos = alumnos.size;
+
+  promedios.forEach((prom) => {
+    console.log(Math.round((prom * 100) / cantAlumnos) || 0);
+  });
 
   return { promMayorQueSeis, promedios, abanderados };
 }
