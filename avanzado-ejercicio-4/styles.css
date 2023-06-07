@@ -53,8 +53,17 @@ button {
 }
 
 .input-group {
+  position: relative;
   display: grid;
   gap: 0.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.input-group .error-message {
+  position: absolute;
+  bottom: 0;
+  color: red;
+  font-size: 0.875rem;
 }
 
 input.error {
@@ -63,11 +72,12 @@ input.error {
 
 form button {
   align-self: end;
+  margin-bottom: 1.5rem;
 }
 
 .result {
   display: grid;
-  gap: 2rem;
+  gap: 1rem 2rem;
 }
 
 @media (width > 1080px) {
@@ -76,7 +86,7 @@ form button {
   }
 }
 
-.standard-bearers-list {
+.topScoringStudents-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
@@ -85,13 +95,14 @@ form button {
 }
 
 @media (width > 1080px) {
-  .standard-bearers-list {
+  .topScoringStudents-list {
     grid-template-columns: repeat(6, 1fr);
   }
 }
 
 .standard-bearer {
   border: 1px solid black;
+  text-align: center;
   padding: 1rem 0.5rem;
 }
 
@@ -99,9 +110,10 @@ form button {
   display: flex;
   gap: 1rem;
   border: 1px solid black;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 2rem;
   align-items: center;
   margin-bottom: 1rem;
+  grid-column: 1/-1;
 }
 
 .average-count {

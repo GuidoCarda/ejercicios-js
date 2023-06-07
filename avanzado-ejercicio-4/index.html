@@ -12,20 +12,31 @@
       <form class="container">
         <h2>Cargar legajo</h2>
         <div class="input-group">
-          <label for="nroLegajo">Numero de legajo</label>
-          <input id="nroLegajo" name="nroLegajo" type="number" />
+          <label for="fileNumber">Numero de legajo</label>
+          <input id="fileNumber" name="fileNumber" type="number" />
+          <span class="error-message" id="fileNumber-error"></span>
         </div>
         <div class="input-group">
-          <label for="materiasRendidas">Cantidad materias rendidas</label>
-          <input id="materiasRendidas" name="materiasRendidas" type="number" />
+          <label for="completedSubjects">Cantidad materias rendidas</label>
+          <input
+            id="completedSubjects"
+            name="completedSubjects"
+            type="number"
+          />
+          <span class="error-message" id="completedSubjects-error"></span>
         </div>
         <div class="input-group">
-          <label for="promedio">Promedio</label>
-          <input id="promedio" name="promedio" type="number" />
+          <label for="gradesAverage">Promedio</label>
+          <input id="gradesAverage" name="gradesAverage" type="number" />
+          <span class="error-message" id="gradesAverage-error"></span>
         </div>
         <button>Cargar</button>
       </form>
       <section class="result container">
+        <div class="card">
+          <h2>Promedios mayores a 6</h2>
+          <span class="studentsAboveSix-count">0</span>
+        </div>
         <div class="averages-list-container">
           <h2>Cant de alumnos por promedio</h2>
           <span>cantidad</span>
@@ -43,17 +54,11 @@
           </ul>
         </div>
 
-        <section>
-          <div class="card">
-            <h2>Promedios mayores a 6</h2>
-            <span class="average-count">0</span>
-          </div>
-
-          <div>
-            <h2>Promedios 10</h2>
-            <ul class="standard-bearers-list"></ul>
-          </div>
-          <!-- <div class="averages-graph-container">
+        <div>
+          <h2>Promedios 10</h2>
+          <ul class="topScoringStudents-list"></ul>
+        </div>
+        <!-- <div class="averages-graph-container">
             <h2>Promedos alumnos por nota</h2>
             <ul class="averages-graph">
               <li class="average-group">
@@ -108,7 +113,6 @@
               </li>
             </ul>
           </div> -->
-        </section>
       </section>
     </main>
     <section class="exercise">
