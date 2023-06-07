@@ -26,6 +26,33 @@ const studentsAboveSixCountEl = document.querySelector(
 form.addEventListener("submit", handleSubmit);
 inputs.forEach((input) => input.addEventListener("blur", handleBlur));
 
+const students = new Map();
+
+loadStudents(students, 100);
+const analytics = getAnalytics(students);
+renderAnalytics(analytics);
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const student = Object.fromEntries(formData);
+
+  const hasErrors = [...inputs].some(
+    (input) => input.classList.contains("error") || !input.value
+  );
+
+  if (hasErrors) return alert("Valores invalidos");
+
+  students.set(student.fileNumber, [
+    student.completedSubjects,
+    student.gradesAverage,
+  ]);
+
+  form.reset();
+  const analytics = getAnalytics(students);
+  renderAnalytics(analytics);
+}
+
 function handleBlur(e) {
   const { id, value } = e.target;
   const errorElement = document.getElementById(`${id}-error`);
@@ -33,7 +60,7 @@ function handleBlur(e) {
 
   if (error) {
     errorElement.textContent = error;
-    submitBtn.disabled = true;
+    // submitBtn.disabled = true;
     e.target.classList.add("error");
   } else {
     e.target.classList.remove("error");
@@ -55,42 +82,13 @@ function validateInput(id, value) {
     }
   }
 
-  if (id === "completedSubjects" && (value < 0 || value > TOTAL_SUBJECTS)) {
+  if (id === "completedSubjects" && (value < 1 || value > TOTAL_SUBJECTS)) {
     return `Valor fuera de rango (1-${TOTAL_SUBJECTS})`;
   }
 
-  if (id === "gradesAverage" && (value < 0 || value > 10)) {
+  if (id === "gradesAverage" && (value < 1 || value > 10)) {
     return `Valor fuera de rango (1-10)`;
   }
-}
-
-const students = new Map();
-
-const getRandomNumber = (min, max) =>
-  Math.round(Math.random() * (max - min) + min);
-
-loadStudents(students);
-const analytics = getAnalytics(students);
-renderAnalytics(analytics);
-
-function handleSubmit(e) {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  const student = Object.fromEntries(formData);
-
-  const hasErrors = [...inputs].some(
-    (input) => input.classList.contains("error") || !input.value
-  );
-
-  if (hasErrors) return alert("algo salio mal");
-
-  students.set(student.fileNumber, [
-    student.completedSubjects,
-    student.gradesAverage,
-  ]);
-  form.reset();
-  const analytics = getAnalytics(students);
-  renderAnalytics(analytics);
 }
 
 function renderAnalytics({
@@ -98,22 +96,31 @@ function renderAnalytics({
   averageCountByGrade = [],
   topScoringStudents = [],
 }) {
-  studentsAboveSixCountEl.textContent = `${studentsAboveSixCount}`;
+  studentsAboveSixCountEl.textContent = `${studentsAboveSixCount} alumnos`;
+
+  averageCountByGrade.forEach((count, idx) => {
+    averagesEls[idx].textContent = count;
+  });
 
   if (topScoringStudentsEl.hasChildNodes()) {
     topScoringStudentsEl.innerHTML = "";
   }
 
+  if (!topScoringStudents.length) {
+    topScoringStudentsEl.innerHTML =
+      '<li class="empty-state">No hay alumnos con promedio de 10</li>';
+  }
+
   topScoringStudents.forEach((nroLegajo) => {
     const li = document.createElement("li");
     li.textContent = `Alumno ${nroLegajo}`;
-    li.classList.add("standard-bearer");
+    li.classList.add("student");
     topScoringStudentsEl.appendChild(li);
   });
+}
 
-  averageCountByGrade.forEach((cant, idx) => {
-    averagesEls[idx].textContent = cant;
-  });
+function getRandomNumber(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
 }
 
 function loadStudents(students, size = 20) {

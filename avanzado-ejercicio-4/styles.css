@@ -42,7 +42,7 @@ form {
   }
 }
 
-form h2 {
+form h1 {
   grid-column: 1/-1;
 }
 
@@ -50,6 +50,7 @@ input,
 button {
   height: 3rem;
   padding-inline: 1rem;
+  border-radius: 0.5rem;
 }
 
 .input-group {
@@ -66,6 +67,15 @@ button {
   font-size: 0.875rem;
 }
 
+input {
+  outline: 1px solid transparent;
+  border: 1px solid rgb(182, 182, 182);
+}
+
+input:focus {
+  outline-color: rgb(186, 186, 186);
+}
+
 input.error {
   border: 2px solid red;
 }
@@ -73,6 +83,13 @@ input.error {
 form button {
   align-self: end;
   margin-bottom: 1.5rem;
+  background-color: rgb(30, 30, 30);
+  color: white;
+  cursor: pointer;
+}
+
+h2 {
+  margin-bottom: 2rem;
 }
 
 .result {
@@ -88,32 +105,45 @@ form button {
 
 .topScoringStudents-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* genera columnas dinamicamente en base un min y max */
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   gap: 0.5rem;
   align-items: start;
-  max-width: 100%;
+}
+
+.topScoringStudents-container {
+  padding: 1.5rem;
 }
 
 @media (width > 1080px) {
-  .topScoringStudents-list {
-    grid-template-columns: repeat(6, 1fr);
+  .topScoringStudents-list .empty-state {
+    grid-column: 1/-1;
   }
 }
 
-.standard-bearer {
-  border: 1px solid black;
-  text-align: center;
+.student {
   padding: 1rem 0.5rem;
+  background-color: rgb(30, 30, 30);
+  color: white;
+  border-radius: 0.5rem;
 }
 
 .card {
   display: flex;
   gap: 1rem;
-  border: 1px solid black;
+  border: 1px solid rgb(217, 217, 217);
+  border-radius: 0.5rem;
   padding: 1rem 1rem 1rem 2rem;
   align-items: center;
   margin-bottom: 1rem;
   grid-column: 1/-1;
+}
+
+.card span {
+  font-size: 2rem;
+}
+.card h2 {
+  margin-bottom: 0;
 }
 
 .average-count {
@@ -161,63 +191,6 @@ form button {
   width: 5rem;
   text-align: center;
   display: block;
-}
-
-.averages-graph-container {
-  padding: 1rem;
-  border: 1px solid black;
-}
-
-.averages-graph-container h2 {
-  margin-block: 2rem 1rem;
-}
-
-.averages-graph {
-  display: flex;
-  height: 250px;
-  justify-content: stretch;
-  gap: 1rem;
-  border-radius: 0.5rem;
-  /* border: 1px solid black; */
-  padding: 1rem;
-}
-
-.averages-graph .average-group:first-child::before {
-  content: "";
-  position: absolute;
-  height: calc(100% - 1.75rem);
-  width: 0.5rem;
-  bottom: 0rem;
-  background: rgb(213, 213, 213);
-  left: -1.5rem;
-}
-
-.averages-graph .average-group {
-  position: relative;
-  border: 1px solid black;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  gap: 0.25rem;
-}
-
-.averages-graph .average-group > div {
-  background: rgb(213, 217, 222);
-  height: 100%;
-  border-radius: 0.25rem 0.25rem 0 0;
-  transition: height 0.5s ease-in, background-color 0.25s;
-}
-
-.averages-graph .average-group > div:hover {
-  background-color: rgb(47, 79, 120);
-}
-
-.averages-graph .average-group span {
-  display: grid;
-  place-content: center;
-  height: 1.75rem;
-  flex-shrink: 0;
 }
 
 /* Seccion ejercicio */
