@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+main {
+  min-height: 100%;
+}
+
+/* Seccion ejercicio */
+.exercise {
+  background: rgb(24, 28, 38);
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exercise > div {
+  margin-inline: auto;
+  background: rgb(16, 18, 25);
+  border-radius: 0.5rem;
+  padding: 3rem 2rem;
+  width: min(800px, 90%);
+}
+
+.exercise > div > .exercise-title {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+}
+
+.exercise > div > .exercise-desc {
+  color: rgb(164, 167, 175);
+  font-size: 1.25rem;
+}
+
+.exercise > div > .exercise-desc + .exercise-desc {
+  margin-top: 1rem;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Avanzado ejercicio 5</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <form>
+        <h1>Consumo electrico</h1>
+        <label for="consumtion">Ingrese la cantida de KWH consumida</label>
+        <input type="text" id="consumtion" name="consumtion" />
+        <label for="holderId">Numero de documeto titular</label>
+        <input type="text" id="holderId" name="holderId" />
+        <label for="cohabitants"
+          >Cantidad de persoas que viven en la casa</label
+        >
+        <select name="cohabitants" id="cohabitants">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">mas de 4</option>
+        </select>
+        <button>cargar</button>
+      </form>
+
+      <section class="result"></section>
+    </main>
+
+    <section class="exercise">
+      <div>
+        <h3 class="exercise-title">Ejercicio 4</h3>
+        <p class="exercise-desc">
+          Desarrollar la siguiente interfaz. Después de que se hayan cargado 100
+          datos, obtener: KWH consumidos por quien más consumió, cantidad de
+          habitantes de cada grupo que consumió más de 100 KWH, cantidad de
+          personas con cada terminación de documento.",
+        </p>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
