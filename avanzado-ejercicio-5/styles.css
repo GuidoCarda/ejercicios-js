@@ -8,12 +8,73 @@ html,
 body {
   height: 100%;
 }
+body {
+  line-height: 1.5;
+}
 
 main {
   min-height: 100%;
+  padding-block: 2rem;
 }
 
-/* Seccion ejercicio */
+.container {
+  width: min(1080px, 100% - 4rem);
+  margin-inline: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 4rem;
+}
+
+input,
+button,
+select {
+  height: 3rem;
+  padding-inline: 1rem;
+  border-radius: 0.25rem;
+}
+
+input,
+button {
+  outline: 1px solid transparent;
+  border: 1px solid grey;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: grey;
+}
+
+.input-group > :is(input, select) {
+  width: 100%;
+}
+
+.input-group:last-of-type {
+  margin-bottom: 2rem;
+}
+
+/* Results section */
+
+.result {
+  padding-block: 4rem;
+}
+
+.result h2 {
+  margin-bottom: 1.5rem;
+}
+
+.result ul ~ h2 {
+  margin-top: 2rem;
+}
+
+/* Exercise section */
 .exercise {
   background: rgb(24, 28, 38);
   min-height: 100%;

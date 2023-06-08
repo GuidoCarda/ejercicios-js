@@ -95,6 +95,7 @@ function handleSubmit(e) {
     highestConsumtionEl,
     familyPopulationTitle,
     familyPopulationList,
+    idsEndingCountTitle,
     idsEndingCountList
   );
 }

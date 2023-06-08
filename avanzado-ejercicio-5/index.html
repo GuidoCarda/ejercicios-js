@@ -9,26 +9,32 @@
   </head>
   <body>
     <main>
-      <form>
+      <form class="container">
         <h1>Consumo electrico</h1>
-        <label for="consumtion">Ingrese la cantida de KWH consumida</label>
-        <input type="text" id="consumtion" name="consumtion" />
-        <label for="holderId">Numero de documeto titular</label>
-        <input type="text" id="holderId" name="holderId" />
-        <label for="cohabitants"
-          >Cantidad de persoas que viven en la casa</label
-        >
-        <select name="cohabitants" id="cohabitants">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">mas de 4</option>
-        </select>
+        <div class="input-group">
+          <label for="consumtion">Ingrese la cantida de KWH consumida</label>
+          <input type="text" id="consumtion" name="consumtion" />
+        </div>
+        <div class="input-group">
+          <label for="holderId">Numero de documeto titular</label>
+          <input type="text" id="holderId" name="holderId" />
+        </div>
+        <div class="input-group">
+          <label for="cohabitants">
+            Cantidad de persoas que viven en la casa
+          </label>
+          <select name="cohabitants" id="cohabitants">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">mas de 4</option>
+          </select>
+        </div>
         <button>cargar</button>
       </form>
 
-      <section class="result"></section>
+      <section class="result container"></section>
     </main>
 
     <section class="exercise">
