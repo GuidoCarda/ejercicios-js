@@ -65,21 +65,21 @@ function handleSubmit(e) {
   form.reset();
 }
 
+//Calcula un porcentage en base a un valor parcial y un total o acumulador.
 const getPercentage = (partialValue, total) =>
   Math.round((partialValue * 100) / total) || 0;
 
 function getAnalytics() {
   // Cantidad de pesonas que consultan y se interesan en un vehiculo superior a 1.000.000
-  // Cantidad de personas por cada categoria
-  // Porcentaje de hombres que hicieron consultas respecto al total
-
   let overMillionCount = 0;
+  // Cantidad de personas interesadas por cada categoria
   const categoriesCount = {
     sedan: 0,
     pickups: 0,
     standard: 0,
     superior: 0,
   };
+  // Cantidad de hombres que hicieron consultas respecto al total
   let maleCount = 0;
 
   for (const client of clients) {
@@ -95,7 +95,8 @@ function getAnalytics() {
     if (client.gender === "masculino") maleCount++;
   }
 
-  //Calcular porcentajes por genero
+  // Calcular porcentajes por genero
+  // Posicion 0: Masculino | Posiion 1: femenino
   let genderPercentages = [0, 0];
 
   if (clients.length) {
@@ -115,10 +116,12 @@ function getAnalytics() {
   };
 }
 
+//Renderiza el grafico de barra de generos
 function renderBarGraph(values) {
-  const barsEl = document.querySelectorAll(".bar");
-  const percentagesEl = document.querySelectorAll(".percentage");
+  const barsEl = document.querySelectorAll(".bar"); // Selecciono las barras
+  const percentagesEl = document.querySelectorAll(".percentage"); // Selecciono los textos
 
+  //Itero el los valores recibidos y actualizo los elementos del dom
   values.forEach((value, idx) => {
     barsEl[idx].firstElementChild.style.width = `${value}%`;
     percentagesEl[idx].textContent = `${value}%`;
@@ -137,6 +140,7 @@ function renderClients() {
     li.textContent = "Aun no se han registrado posibles clientes";
     li.classList.add("empty-state");
 
+    //Anexo el cliente a la lista de clientes
     clientListEl.appendChild(li);
   }
 
