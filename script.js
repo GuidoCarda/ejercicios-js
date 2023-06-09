@@ -109,13 +109,13 @@ const EXERCISES = [
   {
     title: "Ejercicio 4",
     desc: "El personal de alumnado tiene una planilla con el legajo de cada alumno (un número de 1 a 999), la cantidad de materias rendidas, el promedio del alumno (un número entero de uno a diez). Necesitamos conocer, a través de un programa, la cantidad de alumnos cuyo promedio supera los seis puntos, cantidad de alumnos que hay con cada promedio, legajos de los alumnos a los que el promedio les da 10.",
-    done: false,
+    done: true,
     category: "avanzado",
   },
   {
     title: "Ejercicio 5",
     desc: "Desarrollar la siguiente interfaz. Después de que se hayan cargado 100 datos, obtener: KWH consumidos por quien más consumió, cantidad de habitantes de cada grupo que consumió más de 100 KWH, cantidad de personas con cada terminación de documento.",
-    done: false,
+    done: true,
     category: "avanzado",
   },
   {
