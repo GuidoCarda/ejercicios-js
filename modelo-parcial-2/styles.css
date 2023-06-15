@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  font-family: sans-serif;
+}
+
+main {
+  min-height: 100%;
+  width: min(1080px, 100% - 4rem);
+  margin-inline: auto;
+  padding-block: 3rem;
+}
+
+.porcentajes {
+  font-size: 2.5rem;
+}
+
+.lista-edades {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.lista-edades > li {
+  background: rgb(228, 228, 228);
+  padding: 1rem;
+  width: 8rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.randomizar-btn {
+  height: 3rem;
+  border: 1px solid transparent;
+  padding-inline: 1rem;
+  background: rgb(110, 110, 110);
+  border-radius: 0.3rem;
+  color: rgb(238, 238, 238);
+  font: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 1rem;
+}
+.randomizar-btn:hover {
+  background: #000;
+  color: white;
+}
+
+.lista-decadas {
+  margin-left: 2rem;
+  margin-block: 2rem;
+  font-size: 1.5rem;
+}
