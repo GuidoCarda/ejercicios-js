@@ -136,15 +136,14 @@ function esDominioValido(dominio) {
   //Si el largo de la cadena es 6 significa que es una patente 'nueva'
   if (dominio.length === 7) {
     console.log("7 caracteres");
-    const digitos1 = dominio.slice(0, 2).split(""); // primeros 2 digitos
-    const letras = dominio.slice(2, 5).split(""); // 3 caracteres centrales
-    const digitos2 = dominio.slice(5, 7).split(""); // ultimos 2 digitos
+    const letras = dominio.slice(0, 2).concat(dominio.slice(5, 7)).split("");
+    const digitos = dominio.slice(0, 2).split(""); // primeros 2 digitos
+    console.log(letras);
 
     //valido que los caracteres en cada fragmento sean los correspondientes a un dominio valido
     return (
       letras.every((l) => LETRAS.includes(l.toLowerCase())) &&
-      digitos1.every((d) => NUMEROS.includes(Number(d))) &&
-      digitos2.every((d) => NUMEROS.includes(Number(d)))
+      digitos.every((d) => NUMEROS.includes(Number(d)))
     );
   }
 }
