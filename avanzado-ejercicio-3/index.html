@@ -72,54 +72,32 @@
           </div>
         </div>
         <ul class="months-list">
-          <li>
-            <h3>enero</h3>
-            <span class="month-count">0</span>
-          </li>
-          <li>
-            <h3>febrero</h3>
-            <span class="month-count">0</span>
-          </li>
-          <li>
-            <h3>marzo</h3>
-            <span class="month-count">0</span>
-          </li>
-          <li>
-            <h3>abril</h3>
-            <span class="month-count">0</span>
-          </li>
-          <li>
-            <h3>mayo</h3>
-            <span class="month-count">0</span>
-          </li>
-          <li>
-            <h3>junio</h3>
-            <span class="month-count">0</span>
-          </li>
-          <li>
-            <h3>julio</h3>
-            <span class="month-count">0</span>
-          </li>
-          <li>
-            <h3>agosto</h3>
-            <span class="month-count">0</span>
-          </li>
-          <li>
-            <h3>septiembre</h3>
-            <span class="month-count">0</span>
-          </li>
-          <li>
-            <h3>octubre</h3>
-            <span class="month-count">0</span>
-          </li>
-          <li>
-            <h3>noviembre</h3>
-            <span class="month-count">0</span>
-          </li>
-          <li>
-            <h3>diciembre</h3>
-            <span class="month-count">0</span>
-          </li>
+          <!-- Genero dinamicamente los meses           -->
+          <script>
+            const MONTHS = [
+              "enero",
+              "febrero",
+              "marzo",
+              "abril",
+              "mayo",
+              "junio",
+              "julio",
+              "agosto",
+              "septiembre",
+              "octubre",
+              "noviembre",
+              "diciembre",
+            ];
+
+            for (const mes of MONTHS) {
+              document.write(`
+              <li>
+                <h3>${mes}</h3>
+                <span class="month-count">0</span>
+              </li>
+              `);
+            }
+          </script>
         </ul>
       </section>
     </main>

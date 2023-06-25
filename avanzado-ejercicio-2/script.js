@@ -21,32 +21,38 @@
 // Porcentaje de hombres que hicieron consultas respecto al total
 
 const MOCK_CLIENT = {
-  fullname: "Guido Cardarelli",
-  age: "21",
   gender: "masculino",
-  maritalState: "soltero",
-  children: 0,
-  vehicleCategory: "sedan",
+  vehicleCategory: 1,
   amount: "1000004",
 };
 
 //mock clients
 const clients = Array(3).fill(MOCK_CLIENT);
 
-// const clients = [];
+//Creo un arreglo con las categorias de autos para poder agregar mas luego
+const CAR_CATEGORIES = ["sedan", "pickups", "standard", "superiores"];
 
 const form = document.querySelector("form");
-const inputs = document.querySelectorAll("input");
 const clientListEl = document.querySelector(".clients-list");
 const overMillionEl = document.querySelector(".overMillion-count");
 const categoriesListEl = document.querySelector(".categories-list");
 const percentagesEl = document.querySelector(".malePercentage");
+const carCategoriesSelect = document.querySelector("#vehicleCategory"); // selector de categorias
 
-const themeToggleBtn = document.querySelector("#theme-toggle");
+//Populo dinamicamente el selector de categorias
+//Pudiendo en un futuro agregar mas.
+CAR_CATEGORIES.forEach((category, index) => {
+  const option = document.createElement("option");
+  option.value = index; // uso el index como valor para referenciar a la categoria
+  option.textContent = category;
+  carCategoriesSelect.appendChild(option);
+});
+
+const themeToggleBtn = document.querySelector("#theme-toggle"); // boton para togglear el tema (oscuro/claro)
 
 themeToggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark");
-});
+}); //agrego o elimino la clase dark para actualizar el tema
 
 form.addEventListener("submit", handleSubmit);
 
@@ -54,6 +60,8 @@ function handleSubmit(e) {
   e.preventDefault();
   const formData = new FormData(e.target);
   const client = Object.fromEntries(formData);
+
+  console.log(client.vehicleCategory);
 
   if (!client.amount) {
     return alert("Campo importe vacio");
@@ -73,12 +81,13 @@ function getAnalytics() {
   // Cantidad de pesonas que consultan y se interesan en un vehiculo superior a 1.000.000
   let overMillionCount = 0;
   // Cantidad de personas interesadas por cada categoria
-  const categoriesCount = {
-    sedan: 0,
-    pickups: 0,
-    standard: 0,
-    superior: 0,
-  };
+  const categoriesCount = Array(CAR_CATEGORIES.length).fill(0);
+  // const categoriesCount = {
+  //   sedan: 0,
+  //   pickups: 0,
+  //   standard: 0,
+  //   superior: 0,
+  // };
   // Cantidad de hombres que hicieron consultas respecto al total
   let maleCount = 0;
 
@@ -89,6 +98,7 @@ function getAnalytics() {
     }
 
     //Contar cuantos consultan por cada categoria
+    console.log(client.vehicleCategory);
     categoriesCount[client.vehicleCategory] += 1;
 
     //Contar cuantos son masculinos
@@ -150,10 +160,12 @@ function renderClients() {
 
     const { gender, vehicleCategory, amount } = client;
 
+    const categoryName = CAR_CATEGORIES[vehicleCategory];
+
     li.innerHTML = `
       <p>${gender}</p>
       <p class="amount">$${amount}</p>
-      <span class="category-label ${vehicleCategory}">${vehicleCategory}</span>
+      <span class="category-label ${categoryName}">${categoryName}</span>
     `;
 
     li.classList.add("client-list-item");
@@ -161,6 +173,7 @@ function renderClients() {
   });
 }
 
+//renderiza las analiticas en base a los datos de los interesados
 function renderAnalytics() {
   const { overMillionCount, categoriesCount, genderPercentages } =
     getAnalytics();
@@ -178,8 +191,10 @@ function renderAnalytics() {
     const h3 = document.createElement("h3");
     const span = document.createElement("span");
 
+    console.log(category);
+    console.log(categoriesCount);
     //Agrego clases y contenido a c/componente del li
-    h3.textContent = category;
+    h3.textContent = CAR_CATEGORIES[category];
     h3.classList.add("category-title");
     span.textContent = categoriesCount[category];
     span.classList.add("category-count");
@@ -195,5 +210,6 @@ function renderAnalytics() {
   renderBarGraph(genderPercentages);
 }
 
+//Renderizo las facturas existentes
 renderClients();
 renderAnalytics();

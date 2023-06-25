@@ -26,32 +26,35 @@ const evenMonthPrefCountEl = document.querySelector(
 
 form.addEventListener("submit", handleSubmit);
 
-const dayPrefCount = Array(7).fill(0); // [0,0,0,0,0,0,0]
-const monthPrefCount = Array(12).fill(0);
-let evenMonthPrefCount = 0;
-let maleCount = 0;
-let nonSundayPrefMaleCount = 0;
+const dayPrefCount = Array(7).fill(0); // [0,0,0,0,0,0,0] // contador de dia preferidos
+const monthPrefCount = Array(12).fill(0); // contador de mes preferido
+let evenMonthPrefCount = 0; // contador de personas que prefieren meses par
+let maleCount = 0; // contador de hombres
+let nonSundayPrefMaleCount = 0; // contador de hombres que NO prefieren el domingo
 
 function handleSubmit(e) {
   e.preventDefault();
   const formData = new FormData(e.target);
-  const [gender, day, month] = Object.values(Object.fromEntries(formData));
+  const [gender, day, month] = Object.values(Object.fromEntries(formData)); // extraigo los datos del form
 
-  dayPrefCount[day]++;
-  monthPrefCount[month]++;
-  if (gender === "male") maleCount++;
-  if (gender === "male" && day !== "6") nonSundayPrefMaleCount++;
-  if ((Number(month) + 1) % 2 === 0) evenMonthPrefCount++;
+  dayPrefCount[day]++; // incremento el dia preferido
+  monthPrefCount[month]++; // incremento el mes preferido
 
+  if (gender === "male") maleCount++; // si es hombre, incremento el contador
+  if (gender === "male" && day !== "6") nonSundayPrefMaleCount++; // si es hombre y no prefiere el domingo incremento el contador
+  if ((Number(month) + 1) % 2 === 0) evenMonthPrefCount++; // si prefiere mes par incremento el contador
+
+  //Calculo el porcentaje de Hombres que no prefieren los domingos
   const nonSundayPrefMalePercentage =
     Math.round((nonSundayPrefMaleCount * 100) / maleCount) || 0;
 
+  //Calculo el total de respuestas usando el contador de dia preferidos | podria haber usado una variable como contador tambien
   const responsesCount = dayPrefCount.reduce((acum, curr) => (acum += curr), 0);
 
   const preferedDay = dayPrefCount
-    .map((count, day) => [day, count])
-    .sort((a, b) => b[1] - a[1])
-    .at(0)[0];
+    .map((count, day) => [day, count]) // mapeo el arreglo retornando por cada contador un arreglo [dia, contador]
+    .sort((a, b) => b[1] - a[1]) // ordeno el arreglo de mayor a menor
+    .at(0)[0]; // me quedo con el primer elemento (el mayor ya que previamente lo ordene)
 
   //Total encuestados
   surveyCountEl.textContent = responsesCount;

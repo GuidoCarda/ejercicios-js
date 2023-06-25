@@ -1,14 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+main {
+  min-height: 100%;
+}
+
 html,
 body {
   height: 100%;
 }
+
 body {
+  font-family: "Inter", sans-serif;
   line-height: 1.5;
 }
 
@@ -38,12 +46,11 @@ select {
   height: 3rem;
   padding-inline: 1rem;
   border-radius: 0.25rem;
+  outline: 1px solid transparent;
 }
 
-input,
-button {
-  outline: 1px solid transparent;
-  border: 1px solid grey;
+input {
+  border: 2px solid rgb(189, 189, 189);
 }
 
 .input-group label {
@@ -56,8 +63,22 @@ button {
   width: 100%;
 }
 
+.input-group input:focus {
+  border-color: rgb(21, 66, 114);
+}
+
 .input-group:last-of-type {
   margin-bottom: 2rem;
+}
+
+form button {
+  background: rgb(42, 84, 158);
+  color: white;
+  border: none;
+}
+
+form button:hover {
+  box-shadow: 0px 3px 15px -3px rgba(42, 85, 158, 0.638);
 }
 
 /* Results section */
@@ -71,6 +92,39 @@ button {
 }
 
 .result ul ~ h2 {
+  margin-top: 2rem;
+}
+
+.result ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.result .familyPopulation-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.result .familyPopulation-list > li {
+  background: rgb(67, 124, 180);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  width: max-content;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+}
+
+.reset-btn {
+  height: 3rem;
+  padding-inline: 2rem;
+  background: rgb(18, 18, 18);
+  color: rgb(247, 247, 247);
   margin-top: 2rem;
 }
 

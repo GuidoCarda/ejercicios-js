@@ -309,7 +309,7 @@ form button:hover {
 .client-list-item {
   display: grid;
   gap: 0.5rem;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .empty-state {
@@ -341,11 +341,9 @@ form button:hover {
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     padding-inline: 3rem;
+    justify-items: center;
   }
 
-  .client-list-item > * {
-    /* border: 1px solid black; */
-  }
   .client-list-item .amount {
     justify-self: center;
   }
