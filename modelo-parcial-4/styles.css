@@ -3,3 +3,40 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body {
+  line-height: 1.5;
+}
+
+button {
+  height: 3rem;
+  padding-inline: 1.5rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.result {
+  width: min(1080px, 100% - 4rem);
+  margin-inline: auto;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.result h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0;
+}
+
+.result ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.result button {
+  background: rgb(30, 30, 30);
+  color: rgb(239, 239, 239);
+  border: none;
+  border-radius: 0.3rem;
+}
