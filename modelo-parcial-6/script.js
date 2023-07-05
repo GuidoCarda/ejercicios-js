@@ -3,7 +3,6 @@
 // orderar las letras alfabeticamente y mostrar
 
 const CHARACTERS_LIMIT = 16;
-
 const LETTERS = [
   "a",
   "b",
@@ -38,7 +37,7 @@ const getRandomNumberPair = (min = 1, max = 26) => {
   return number < 10 ? "0" + number : String(number);
 };
 
-const getLetter = (id) => LETTERS[Number(id)];
+const getLetter = (id) => LETTERS[Number(id) - 1];
 
 const getWord = (letters) => {
   return lettersIds.map(getLetter).join("");
