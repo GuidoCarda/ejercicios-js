@@ -40,3 +40,14 @@ Dos tipos de ganadores en cada jugada
 ### Cartón de juego
 
 El cartón o tarjeta que compra el jugador cuenta con 15 números distintos y distribuidos en tres líneas horizontales de cinco números cada una y en nueve columnas verticales, distribuidos sobre una base de 90 números consecutivos.
+
+- [x] Generar carton vacio
+- [x] Cargar carton
+  - [x] Cumplir restricciones carton (nros por fila, nros total, nros por columna)
+- [x] Imprimir carton
+- [x] Imprimir mas de 1 carton
+- [x] Generar numero aleatorio unico en rango ( 1-90)
+- [x] Agregar estado a el carton para saber si hubo coincidencia con alguno de los numeros del mismo {value, state: '' | 'match'}
+- [x] Mostrar Ficha en el carton si hay coincidencia cell.state === 'match'
+- [x] Checkear BINGO!
+- [] Checkear Linea

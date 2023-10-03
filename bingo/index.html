@@ -6,12 +6,42 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Carton Bingo aleatorio</h1>
-    <table></table>
+    <main>
+      <section class="container">
+        <h1>Bingo aleatorio</h1>
+        <div class="RandomNumber">
+          <span class="RandomNumber-value"></span>
+          <button class="RandomNumber-btn btn">Generar Numero</button>
+        </div>
+        <div class="PickedNumbers">
+          <h2 class="PickedNumbers-title">Numeros sorteados</h2>
+          <ul class="PickedNumbers-list"></ul>
+        </div>
+        <div class="Selecte"></div>
+      </section>
+    </main>
     <script src="index.js"></script>
   </body>
 
   <style>
+    *,
+    *::after,
+    *::before {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+    }
+
+    .container {
+      width: min(1080px, calc(100% - 4rem));
+      padding-block: 2rem;
+      margin-inline: auto;
+    }
+
     table {
       border: 1px solid black;
       border-collapse: collapse;
@@ -22,6 +52,128 @@
       border: 1px solid black;
       height: 3rem;
       width: 5rem;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    td.empty {
+      background: rgb(132, 132, 225);
+    }
+
+    td.match::after {
+      z-index: 10;
+      position: absolute;
+      inset: 0;
+      content: "";
+      aspect-ratio: 1/1;
+      height: 100%;
+      margin-inline: auto;
+      border-radius: 100%;
+      background: rgba(132, 132, 225, 0.5);
+      display: grid;
+      place-content: center;
+    }
+
+    .btn {
+      height: 3rem;
+      padding-inline: 1.5rem;
+      border: none;
+      background: rgb(132, 132, 225);
+      color: white;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      filter: grayscale(100) opacity(0.6);
+    }
+
+    .RandomNumber {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      /* border: 2px solid black; */
+      gap: 1rem;
+    }
+
+    .RandomNumber-btn:disabled {
+      filter: grayscale(100);
+    }
+
+    .Card {
+    }
+
+    .Card-title {
+    }
+
+    .Card-table {
+    }
+
+    .Card-table td {
+    }
+
+    .RandomNumber-value {
+      display: grid;
+      place-content: center;
+      font-size: 2.5rem;
+      height: 3.5rem;
+      border-radius: 0.3rem;
+      aspect-ratio: 1/1;
+      /* background: red; */
+    }
+
+    .PickedNumbers {
+      min-height: 10rem;
+      margin-bottom: 1rem;
+    }
+
+    .PickedNumbers-title {
+      margin-bottom: 1rem;
+    }
+
+    .PickedNumbers-list {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .PickedNumbers-item {
+      display: grid;
+      place-content: center;
+
+      height: 3rem;
+      width: 3rem;
+      border-radius: 0.3rem;
+      background: rgb(132, 132, 225);
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .Result {
+      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      gap: 1rem;
+      place-content: center;
+      text-align: center;
+    }
+
+    .container:has(> .Result) {
+      padding-block: 0;
+    }
+
+    .Result h1 {
+      font-size: 2.5rem;
+      color: rgb(132, 132, 225);
+    }
+
+    .Result p {
+      font-size: 1.5rem;
+      color: rgb(157, 157, 177);
     }
   </style>
 </html>

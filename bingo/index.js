@@ -7,171 +7,191 @@
 
 // En las columnas puede haber tres, dos o un número, pero sin que nunca haya una columna sin número.
 
-//Limites de juego en el bingo
-const lowerLimit = 1;
-const higherLimit = 90;
+//Elementos del DOM para renderizar el contenido
+const $container = document.querySelector(".container");
+const $randomNumberSpan = document.querySelector(".RandomNumber-value");
+const $pickedNumbersUL = document.querySelector(".PickedNumbers-list");
+const $randomNumberBtn = document.querySelector(".RandomNumber-btn");
 
-const numbersLimitPerCard = 15;
+//Limites de juego en el bingo
+const LOWER_LIMIT = 1;
+const UPPER_LIMIT = 90;
+const NUMBERS_PER_CARD = 15;
 
 //Obtengo un entero aleatorio en el rango propuesto
 //Si no recibo parametros entre 1 y 90 por defecto
-function getRandomIntInRange(min = 1, max = 90) {
+function getRandomIntInRange(min = LOWER_LIMIT, max = UPPER_LIMIT) {
   return Math.round(Math.random() * (max - min) + min);
 }
 
-// Generar Carton
-function generateCard() {
-  const card = []; // max length 3
-  // Cantidad restante de numeros por generar para el carton.
-  let remainingNumbers = 15;
-
-  //Set que contiene los valores ya agregados al carton.
-  //La estructura set no permite valores repetidos.
-  const numbersAlreadyInCard = new Set();
-
-  for (let row = 0; row < 3; row++) {
-    const cardRow = []; // max length 9.
-
-    //itero las columnas y agrego un numero aleatorio
-    for (let col = 0; col < 9; col++) {
-      //Checkeo que queden espacios libres ( Maximo 15 )
-
-      let randomNumber = getRandomIntInRange();
-      console.log(randomNumber); // Numero generado
-
-      while (numbersAlreadyInCard.has(randomNumber)) {
-        console.log(
-          `${randomNumber} ya existe en el carton, generando uno nuevo`
-        ); // Log cuando se repite un numero en el carton
-        // Sigo generando numeros hasta que se genere uno que no este.
-        randomNumber = getRandomIntInRange();
-      }
-
-      //Agrego el numero generado al set con los numeros del carton
-      console.log(`Agregando ${randomNumber} al carton`);
-
-      if (numbersAlreadyInCard.size === numbersLimitPerCard) {
-        continue;
-      }
-
-      numbersAlreadyInCard.add(randomNumber);
-      cardRow.push(randomNumber);
-    }
-
-    //agrego la fila populada al carton.
-    card.push(cardRow);
-  }
-
-  //Genero un numero aleatorio en rango
-  // let randomNumber = getRandomIntInRange();
-  //Si el numero generado ya esta en la targeta
-  // while (numbersAlreadyInCard.has(randomNumber)) {
-  // Sigo generando numeros hasta que se genere uno que no este.
-  // randomNumber = getRandomIntInRange();
-  // }
-  //Agrego el numero generado al set con los numeros del carton
-  // numbersAlreadyInCard.add(randomNumber);
-
-  //Retorno el carton ya cargado
-  return card;
+//Genera un carton vacio ( matriz de 3 filas x 9 columnas de nulos )
+function createCard() {
+  return Array.from({ length: 3 }, () => Array(9).fill(null));
 }
 
-// Cada columna debe tener al menos 1 numero
-// Por columna puede haber 1,2 o 3 numeros
-// En total debe haber 15 numeros
-// Deben ser unicos
-
-//Imprimir carton generado
-function renderCard() {}
-
-function generateEmptyCard() {
-  const card = []; // max length 3 (numero de filas)
-  for (let row = 0; row < 3; row++) {
-    const cardRow = []; // max length 9. (numero de columnas)
-    //itero las columnas y agrego null a cada la columna
-    for (let col = 0; col < 9; col++) {
-      cardRow.push(null);
-    }
-    //agrego la fila a la tarjeta
-    card.push(cardRow);
-  }
-
-  //Retorno el carton ya cargado
-  return card;
-}
-
-function fillCard(emptyCard) {
-  const card = emptyCard.slice();
-  const numbersAlreadyInCard = new Set();
-  let currentCol = 0;
-  while (numbersAlreadyInCard.size < 15) {
-    // Obtener numero aleatorio entre 1 y 90
-    let randomNumber = getRandomIntInRange();
-    //validar si ya esta en el carton
-    while (numbersAlreadyInCard.has(randomNumber)) {
-      //si está generamos un nuevo numero
-      randomNumber = getRandomIntInRange();
-    }
-    //agregamos el numero no repetido al carton
-    numbersAlreadyInCard.add(randomNumber);
-
-    // obtenemos una fila aleatoria en el carton;
-    let randomRow = getRandomIntInRange(0, 2);
-
-    //genero una posicion aleatoria
-    if (numbersAlreadyInCard.size > 9) {
-      // console.log("entro al if");
-      // console.log(numbersAlreadyInCard);
-      currentCol = getRandomIntInRange(0, 8);
-      while (card[randomRow][currentCol] !== null) {
-        currentCol = getRandomIntInRange(0, 8);
-        randomRow = getRandomIntInRange(0, 2);
-      }
-      card[randomRow][currentCol] = randomNumber;
-    } else {
-      card[randomRow][currentCol] = randomNumber;
-      currentCol++;
-    }
-  }
-  return card;
-}
+// Cargar carton vacio
 
 function getNewCard() {
-  const emptyCard = generateEmptyCard();
-  const filledCard = fillCard(emptyCard);
-  return filledCard;
+  const card = createCard();
+
+  //Set para controlar si un numero esta en el carton.
+  const numbersAlreadyInCard = new Set();
+
+  // variable para iterar las columnas
+  // < 9 de forma secuencial
+  // >= 9 de forma aleatoria
+  let currentCol = 0;
+
+  while (numbersAlreadyInCard.size < NUMBERS_PER_CARD) {
+    // Obtener numero aleatorio entre 1 y 90
+    const randomNumber = getRandomIntInRange();
+    //Validar si no esta en el carton
+    if (!numbersAlreadyInCard.has(randomNumber)) {
+      //Agregamos el numero a nuestro Set de control.
+      numbersAlreadyInCard.add(randomNumber);
+
+      //Genero el un objeto que contendra el numero y el estado ( '' o 'match' )
+      const cellData = {
+        value: randomNumber,
+        state: "",
+      };
+
+      //Obtengo un indice de fila aleatorio
+      let randomRow = getRandomIntInRange(0, 2);
+
+      if (numbersAlreadyInCard.size > 9) {
+        //Obtengo un indice de columna aleatorio
+        currentCol = getRandomIntInRange(0, 8);
+        //Mientras que la celda este ocupada, generamos otros indices
+        while (card[randomRow][currentCol] !== null) {
+          currentCol = getRandomIntInRange(0, 8);
+          randomRow = getRandomIntInRange(0, 2);
+        }
+        //Si la celda esta libre agregamos el numero
+        card[randomRow][currentCol] = cellData;
+      } else {
+        card[randomRow][currentCol] = cellData;
+        currentCol++;
+      }
+    }
+  }
+  return card;
 }
 
-// const emptyCard = generateEmptyCard();
-// const filledCard = fillCard(emptyCard);
+//Imprimir cartones generados
+function renderCards(cards) {
+  cards.forEach(({ id, card }) => {
+    const cardId = id;
 
-const body = document.querySelector("body");
+    const cardH2 = document.createElement("h2");
+    cardH2.innerHTML = `Carton ${cardId}`;
+    const table = document.createElement("table");
+    table.id = cardId;
+    card.forEach((row) => {
+      const tableRow = document.createElement("tr");
 
+      row.forEach((cell) => {
+        const tableCell = document.createElement("td");
+        if (cell === null) {
+          tableCell.classList.add("empty");
+        } else {
+          tableCell.innerHTML = cell.value;
+          tableCell.dataset.number = cell.value;
+          if (cell.state === "match") {
+            tableCell.classList.add("match");
+          }
+        }
+        tableRow.appendChild(tableCell);
+      });
+      table.appendChild(tableRow);
+    });
+    $container.appendChild(cardH2);
+    $container.appendChild(table);
+  });
+}
+
+function getNewNumber(uniqueNumbers) {
+  let number = getRandomIntInRange();
+  while (uniqueNumbers.has(number)) {
+    number = getRandomIntInRange();
+  }
+  uniqueNumbers.add(number);
+  return number;
+}
+
+function checkBingo(card) {
+  return card
+    .flat()
+    .filter(Boolean)
+    .every((cell) => cell.state === "match");
+}
+
+function checkLine(card) {
+  return card.some((row) =>
+    row.filter(Boolean).every((cell) => cell.state === "match")
+  );
+}
+
+$randomNumberBtn.addEventListener("click", () => {
+  // Limite de numeros alcanzado
+  if (pickedNumbers.size >= 90) return;
+
+  //Obtengo un nuevo numero aleatorio (unico)
+  const newNumber = getNewNumber(pickedNumbers);
+
+  $randomNumberSpan.textContent = newNumber;
+
+  const pickedNumberLi = document.createElement("li");
+  pickedNumberLi.textContent = newNumber;
+  pickedNumberLi.className = "PickedNumbers-item";
+  $pickedNumbersUL.appendChild(pickedNumberLi);
+
+  for (const { id, card } of cards) {
+    //Obtengo el indice si hay coincidencia con el nuevo valor
+    const indexOfMatch = card
+      .flat()
+      .findIndex((cell) => cell?.value === newNumber);
+
+    if (indexOfMatch > -1) {
+      // Marcar carton
+      document
+        .getElementById(id)
+        .querySelector(`[data-number="${newNumber}"]`)
+        .classList.add("match");
+
+      //Obtengo la fila y la columna
+      const row = Math.floor(indexOfMatch / 9);
+      const col = Math.round(indexOfMatch % 9);
+
+      //Actualizo el estado correspondiente
+      card[row][col] = { ...card[row][col], state: "match" };
+    }
+
+    // console.log(id, checkBingo(card));
+    // console.log(id, checkLine(card));
+    if (checkBingo(card)) {
+      $container.innerHTML = `
+      <div class='Result'>
+        <h1>BINGO!</h1>
+        <p>El ganador fue el carton ${id}</p>
+      <div>
+      `;
+
+      //TODO: Imprimir carton ganador (extraer renderCard de renderCards)
+    }
+  }
+
+  if (pickedNumbers.size === 90) button.disabled = true;
+});
+
+const pickedNumbers = new Set();
 const cards = [];
 
+//Genero 10 cartones
 for (let i = 0; i < 10; i++) {
   const card = getNewCard();
-  cards.push(card);
+  cards.push({ id: i + 1, card });
 }
 
-cards.forEach((card) => {
-  const numbersInCardCount = card
-    .map((row) => row.filter(Boolean).length)
-    .reduce((acum, val) => (acum += val), 0);
-  // console.log(numbersCount);
-  const numbersInCardH2 = document.createElement("h2");
-  numbersInCardH2.textContent = numbersInCardCount;
-  const table = document.createElement("table");
-
-  card.forEach((row) => {
-    const tableRow = document.createElement("tr");
-    row.forEach((number) => {
-      const tableCell = document.createElement("td");
-      tableCell.innerHTML = number;
-      tableRow.appendChild(tableCell);
-    });
-    table.appendChild(tableRow);
-  });
-  body.appendChild(numbersInCardH2);
-  body.appendChild(table);
-});
+//Renderizo los cartones
+renderCards(cards);
