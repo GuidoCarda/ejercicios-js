@@ -78,33 +78,45 @@ function getNewCard() {
   return card;
 }
 
+//Recibe el carton a renderizar y el nodo en el que lo agregara.
+function renderCard(card, node) {
+  card.forEach((row) => {
+    const tableRow = document.createElement("tr");
+
+    row.forEach((cell) => {
+      const tableCell = document.createElement("td");
+      if (cell === null) {
+        tableCell.classList.add("empty");
+      } else {
+        tableCell.innerHTML = cell.value;
+        tableCell.dataset.number = cell.value;
+        if (cell.state === "match") {
+          tableCell.classList.add("match");
+        }
+      }
+      tableRow.appendChild(tableCell);
+    });
+    node.appendChild(tableRow);
+  });
+}
+
 //Imprimir cartones generados
 function renderCards(cards) {
   cards.forEach(({ id, card }) => {
     const cardId = id;
 
+    //Creo el titulo del carton
     const cardH2 = document.createElement("h2");
     cardH2.innerHTML = `Carton ${cardId}`;
+
+    //Creo la tabla contenedora
     const table = document.createElement("table");
     table.id = cardId;
-    card.forEach((row) => {
-      const tableRow = document.createElement("tr");
 
-      row.forEach((cell) => {
-        const tableCell = document.createElement("td");
-        if (cell === null) {
-          tableCell.classList.add("empty");
-        } else {
-          tableCell.innerHTML = cell.value;
-          tableCell.dataset.number = cell.value;
-          if (cell.state === "match") {
-            tableCell.classList.add("match");
-          }
-        }
-        tableRow.appendChild(tableCell);
-      });
-      table.appendChild(tableRow);
-    });
+    //Renderizo el carton correspondiente
+    renderCard(card, table);
+
+    //Anexo los elementos al dom
     $container.appendChild(cardH2);
     $container.appendChild(table);
   });
@@ -177,6 +189,11 @@ $randomNumberBtn.addEventListener("click", () => {
       <div>
       `;
 
+      const $resultDiv = document.querySelector(".Result");
+      const table = document.createElement("table");
+
+      renderCard(card, table);
+      $resultDiv.appendChild(table);
       //TODO: Imprimir carton ganador (extraer renderCard de renderCards)
     }
   }
