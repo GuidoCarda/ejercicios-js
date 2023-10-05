@@ -131,10 +131,16 @@ const EXERCISES = [
     category: "arreglos",
   },
   {
-    title: "Ejercicio 3",
-    desc: "Escribir un programa en Javascript que cargue un array de 50 elementos con números al azar entre -500 y 500, y que no se repitan. Luego deberá armar una función llamada Calculos que devolverá la suma de todos los elementos del array, la cantidad de números positivos y la cantidad de números negativos que se encuentren en el array. Fuera de la función, deberá imprimir esos tres valores. Por último, deberá armar un nuevo array sólo con los números negativos encontrados en el anterior. Deberá imprimirlo por pantalla, y en caso de que no se haya encontrado ningún número negativo, informar por pantalla de esta situación.",
+    title: "Bingo",
+    desc: "Implementar el juego del bingo",
     done: true,
     category: "arreglos",
+  },
+  {
+    title: "Bingo",
+    desc: "Escribir un programa en Javascript que cargue un array de 50 elementos con números al azar entre -500 y 500, y que no se repitan. Luego deberá armar una función llamada Calculos que devolverá la suma de todos los elementos del array, la cantidad de números positivos y la cantidad de números negativos que se encuentren en el array. Fuera de la función, deberá imprimir esos tres valores. Por último, deberá armar un nuevo array sólo con los números negativos encontrados en el anterior. Deberá imprimirlo por pantalla, y en caso de que no se haya encontrado ningún número negativo, informar por pantalla de esta situación.",
+    done: true,
+    category: "integrador",
   },
 ];
 
@@ -166,6 +172,8 @@ EXERCISES.forEach((exercise) => {
     exercisesListElems[1].appendChild(listItem);
   } else if (category === "arreglos") {
     exercisesListElems[2].appendChild(listItem);
+  } else {
+    exercisesListElems[3].appendChild(listItem);
   }
 });
 

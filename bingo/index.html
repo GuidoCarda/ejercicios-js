@@ -37,7 +37,7 @@
     }
 
     .container {
-      width: min(1080px, calc(100% - 4rem));
+      width: min(1280px, calc(100% - 4rem));
       padding-block: 2rem;
       margin-inline: auto;
     }
@@ -79,6 +79,7 @@
       padding-inline: 1.5rem;
       border: none;
       background: rgb(132, 132, 225);
+      border-radius: 0.2rem;
       color: white;
       font: inherit;
       cursor: pointer;
@@ -92,25 +93,20 @@
     .RandomNumber {
       display: flex;
       align-items: center;
+      width: max-content;
+      margin-inline: auto;
       flex-direction: column;
-      /* border: 2px solid black; */
-      gap: 1rem;
+      border: 2px solid rgb(233, 232, 232);
+
+      padding: 2rem 2rem;
+      border-radius: 0.5rem;
+      background: rgb(246, 246, 246);
+
+      gap: 2rem;
     }
 
     .RandomNumber-btn:disabled {
       filter: grayscale(100);
-    }
-
-    .Card {
-    }
-
-    .Card-title {
-    }
-
-    .Card-table {
-    }
-
-    .Card-table td {
     }
 
     .RandomNumber-value {
@@ -120,7 +116,9 @@
       height: 3.5rem;
       border-radius: 0.3rem;
       aspect-ratio: 1/1;
-      /* background: red; */
+      background: rgba(132, 132, 225, 0.5);
+      color: rgb(57, 57, 104);
+      font-weight: bold;
     }
 
     .PickedNumbers {
@@ -151,6 +149,18 @@
       color: white;
       font-weight: bold;
       font-size: 1.5rem;
+    }
+
+    .Card {
+    }
+
+    .Card-title {
+    }
+
+    .Card-table {
+    }
+
+    .Card-table td {
     }
 
     .Result {
